@@ -1,22 +1,16 @@
 import { Flex, Heading, Input, Button, useColorMode, useColorModeValue } from '@chakra-ui/react'
+import api from '@/utils/api'
 
 const IndexPage = () => {
   const { toggleColorMode } = useColorMode();
   const formBackground = useColorModeValue("gray.100", "gray.700");
   const submit = async () => {
-    await fetch("/api/admin", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ "hoge": "fuga" }),
-    })
-    .then((res) => {
-      console.log("POSTリクエスト成功");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    let body = { 'hoge': 'fuga' };
+    await api
+      .post('/api/admin', body)
+      .then((data) => {
+        console.log(data);
+      })
   }
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">

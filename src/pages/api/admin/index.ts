@@ -12,7 +12,8 @@ const apiRoute = nextConnect({
 
 apiRoute.post(async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("Request to POST:api/admin/index has come!!")
-  res.status(200).json("Hello from api/admin/index.ts");
+  let result = { hoge: 'string' }
+  res.status(200).json(result);
 });
 
 export default apiRoute;
