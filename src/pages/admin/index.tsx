@@ -6,11 +6,8 @@ const IndexPage = () => {
   const formBackground = useColorModeValue("gray.100", "gray.700");
   const submit = async () => {
     let body = { 'hoge': 'fuga' };
-    await api
-      .post('/api/admin', body)
-      .then((data) => {
-        console.log(data);
-      })
+    let response = await api.post('/api/admin', body)
+    console.log(response);
   }
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
