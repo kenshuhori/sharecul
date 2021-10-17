@@ -1,8 +1,7 @@
-import { Flex, Heading, Input, Button, useColorMode, useColorModeValue } from '@chakra-ui/react'
+import { Flex, Heading, Input, Button, useColorModeValue } from '@chakra-ui/react'
 import api from '@/utils/api'
 
 const IndexPage = () => {
-  const { toggleColorMode } = useColorMode();
   const formBackground = useColorModeValue("gray.100", "gray.700");
   const submit = async () => {
     let body = { 'hoge': 'fuga' };
@@ -16,7 +15,6 @@ const IndexPage = () => {
         <Input placeholder="kenshuhori@gmail.com" varient="Filled" mb={3} type="email" />
         <Input placeholder="******" varient="Fileed" mb={6} type="password" />
         <Button onClick={submit} colorScheme="teal" mb={6}>Log In</Button>
-        <Button onClick={toggleColorMode}>Toggle Color Mode</Button>
       </Flex>
     </Flex>
   )
