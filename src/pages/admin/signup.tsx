@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { CheckIcon } from '@chakra-ui/icons'
 import { Flex, Heading, FormControl, FormLabel, FormErrorMessage, FormHelperText, InputGroup, InputLeftElement, InputRightElement, Text, Input, Button, useColorModeValue } from '@chakra-ui/react'
 import { Formik, FormikProps, Form, Field, ErrorMessage } from 'formik';
 import { InputChecker } from '@/components/utils/InputChecker'
@@ -7,68 +6,47 @@ import api from '@/utils/api'
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("gray.100", "gray.700");
-  const submit = async () => {
-    let body = { 'hoge': 'fuga' };
-    let response = await api.post('/api/admin', body)
+  const handleChangeName = (event) => setName(event.target.value);
+  const handleChangeEmail = (event) => setEmail(event.target.value);
+  const handleChangePassword = (event) => setPassword(event.target.value);
+  const handleChangePasswordConfirm = (event) => setPasswordConfirm(event.target.value);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirm, setPasswordConfirm] = useState("");
+  const submit = async (data) => {
+    let response = await api.post('/api/admin', data)
     console.log(response);
   }
   return (
-    <Formik
-      initialValues={{}}
-      onSubmit={(values, actions) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2))
-          actions.setSubmitting(false)
-        }, 1000)
-      }}
-    >
-      {(props: FormikProps<any>) => (
-        <Form>
-          <Flex height="100vh" alignItems="center" justifyContent="center">
-            <Flex direction="column" background={formBackground} p={12} rounded={6}>
-              <Heading mb={6}>Sign Up</Heading>
-              <Field name="name">
-                {({field, form}: { field: any, form: any }) => (
-                  <FormControl isRequired>
-                    <FormLabel fontSize={12} htmlFor="name">お名前</FormLabel>
-                    <InputGroup>
-                      <Input id="name" {...field} placeholder="田中タロウ" varient="Filled" mb={3} type="text" />
-                      <InputRightElement children={<InputChecker type="text" value="hoge" />} />
-                    </InputGroup>
-                  </FormControl>
-                  )
-                }
-              </Field>
-              <Field name="email">
-                {({field, form}: { field: any, form: any }) => (
-                  <FormControl isRequired>
-                    <FormLabel fontSize={12} htmlFor="email">メールアドレス</FormLabel>
-                    <InputGroup>
-                      <Input id="email" {...field} placeholder="sharecul@example.com" varient="Filled" mb={3} type="email" />
-                      <InputRightElement children={<InputChecker type="text" value="hoge" />} />
-                    </InputGroup>
-                  </FormControl>
-                  )
-                }
-              </Field>
-              <Field name="password">
-                {({field, form}: { field: any, form: any }) => (
-                  <FormControl isRequired>
-                    <FormLabel fontSize={12} htmlFor="password">パスワード</FormLabel>
-                    <InputGroup>
-                      <Input id="password" {...field} placeholder="******" varient="Fileed" mb={6} type="password" />
-                      <InputRightElement children={<InputChecker type="password" value="" />} />
-                    </InputGroup>
-                  </FormControl>
-                  )
-                }
-              </Field>
-              <Button isLoading={props.isSubmitting} type="submit" colorScheme="teal" mb={6}>登録</Button>
-            </Flex>
-          </Flex>
-        </Form>
-      )}
-    </Formik>
+    <form onSubmit={submit}>
+      <Flex height="100vh" alignItems="center" justifyContent="center">
+        <Flex direction="column" background={formBackground} p={12} rounded={6}>
+          <Heading mb={6}>Sign Up</Heading>
+          <Text fontSize={12}>お名前</Text>
+          <InputGroup>
+            <Input placeholder="田中たろう" varient="Filled" mb={3} type="text" value={name} onChange={handleChangeName} />
+            <InputRightElement children={<InputChecker type="text" value={name} />} />
+          </InputGroup>
+          <Text fontSize={12}>メールアドレス</Text>
+          <InputGroup>
+            <Input placeholder="sharecul@example.com" varient="Filled" mb={3} type="email" value={email} onChange={handleChangeEmail} />
+            <InputRightElement children={<InputChecker type="email" value={email} />} />
+          </InputGroup>
+          <Text fontSize={12}>パスワード</Text>
+          <InputGroup>
+            <Input placeholder="******" varient="Fileed" mb={6} type="password" value={password} onChange={handleChangePassword} />
+            <InputRightElement children={<InputChecker type="password" value={password} />} />
+          </InputGroup>
+          <Text fontSize={12}>パスワード確認用</Text>
+          <InputGroup>
+            <Input placeholder="******" varient="Fileed" mb={6} type="password" value={password_confirm} onChange={handleChangePasswordConfirm} />
+            <InputRightElement children={<InputChecker type="password_confirm" value={!!password_confirm && password == password_confirm ? 'true' : 'false'} />} />
+          </InputGroup>
+          <Button type="submit" colorScheme="teal" mb={6}>登録</Button>
+        </Flex>
+      </Flex>
+    </form>
   )
 }
 
