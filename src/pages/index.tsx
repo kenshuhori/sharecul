@@ -38,7 +38,7 @@ const IndexPage = () => {
         </Box>
         <Box px="100px" py="30px">
           <Flex w="100%">
-            <Box w="50%">
+            <Box w="40%">
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"

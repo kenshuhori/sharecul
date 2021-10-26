@@ -22,13 +22,13 @@ export const Header = () => {
   const background = useColorModeValue("white", "gray.700");
   return (
     <header>
-      <Flex pos="fixed" w="100%" h={90} py={4} px={100} bg={background} boxShadow="base">
+      <Flex pos="fixed" w="100%" h={90} py={4} px="5%" bg={background} boxShadow="base">
         <Box>
           <Link href="/">
             <Image src="/sharecul.png" h="60px" alt="シェアカルのロゴです"></Image>
           </Link>
         </Box>
-        <Box p="4">
+        <Box p="4" d={{ base: "none", md: "block" }}>
           <Text fontSize="xs" color="orange.400"><b>みんなとシェアするカルチャー</b></Text>
           <Text fontSize="md"><b>シェアカル ふたこ</b></Text>
         </Box>
@@ -48,7 +48,7 @@ export const Header = () => {
             </MenuList>
           </Menu>
         </Box>
-        <Box p="3">
+        <Box p="3" d={{ base: "none", md: "block" }}>
           <IconButton
             size="sm"
             aria-label="flick darkmode"
