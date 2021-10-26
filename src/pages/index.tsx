@@ -37,8 +37,8 @@ const IndexPage = () => {
           </Center>
         </Box>
         <Box px="100px" py="30px">
-          <Flex w="100%">
-            <Box w="40%">
+          <Flex direction={{ base: "column", md: "row" }} >
+            <Box w={{ base: "100%", md: "45%" }} py={{ base: "4", md: "0" }} >
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
@@ -47,8 +47,7 @@ const IndexPage = () => {
                 <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} />
               </InputGroup>
             </Box>
-            <Spacer />
-            <Box>
+            <Box m="0 0 0 auto">
               <HStack>
                 <Box w="100px">
                   <Text>並び替え</Text>
