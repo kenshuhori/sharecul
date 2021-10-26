@@ -20,6 +20,7 @@ import { SearchIcon } from '@chakra-ui/icons'
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("gray.100", "gray.700")
+  const articleBackground = useColorModeValue("red.50", "gray.600")
   return (
     <div>
       <Stack>
@@ -61,30 +62,31 @@ const IndexPage = () => {
             </Box>
           </Flex>
         </Box>
-        <Box px="100px" pb="100px">
+        <Box px="5%" pb="100px">
           <section>
             <Stack>
               {[1, 2].map(item =>
                 <article>
-                  <Flex p={4}>
-                    <Container maxW="40%" minH="200px">
+                  <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
+                    <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Image src="/brothers-g351175e76_1920.jpg" alt="シェアカルアイテムの画像です"></Image>
                     </Container>
-                    <Container  maxW="40%" minH="200px">
-                      <Stack>
+                    <Container maxW={{ base: "90%", md: "50%" }} minH="200px">
+                      <Stack h="100%">
                         <Box>
                           <Text fontSize="2xl"><b>タイトルが入ります</b></Text>
                         </Box>
                         <Flex>
-                          <Text fontSize="sm">著者名が入ります</Text>
+                          <Text fontSize="md">著者名が入ります</Text>
                           <Spacer />
-                          <Text fontSize="lg">値段が入ります</Text>
+                          <Text fontSize="md">値段が入ります</Text>
                         </Flex>
-                        <Container h="130px" overflow="hidden">
+                        <Container maxH={{ sm:"100px", md: "100px", lg:"200px" }} overflow="hidden">
                           <Text fontSize="sm">説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。</Text>
                         </Container>
-                        <Box>
-                          <Button colorScheme="teal" size="md">申し込む</Button>
+                        <Spacer />
+                        <Box justifyContent="flex-end">
+                          <Button colorScheme="teal" size="md" w="100%">申し込む</Button>
                         </Box>
                       </Stack>
                     </Container>
