@@ -25,7 +25,7 @@ const IndexPage = () => {
     <div>
       <Stack>
         <Box>
-          <Image src="/lake-gdecf3ad1d_1920.jpg" w="100%" h="400px" alt="シェアカルのテーマ画像です"></Image>
+          <Image src="/lake-gdecf3ad1d_1920.jpg" w="100%" h="300px" alt="シェアカルのテーマ画像です"></Image>
         </Box>
         <Box>
           <Center pt={8}>
@@ -81,9 +81,9 @@ const IndexPage = () => {
                           <Spacer />
                           <Text fontSize="md">値段が入ります</Text>
                         </Flex>
-                        <Container maxH={{ sm:"100px", md: "100px", lg:"200px" }} overflow="hidden">
+                        <Box maxH={{ sm:"100px", md: "100px", lg:"200px" }} overflow="hidden">
                           <Text fontSize="sm">説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。</Text>
-                        </Container>
+                        </Box>
                         <Spacer />
                         <Box justifyContent="flex-end">
                           <Button colorScheme="teal" size="md" w="100%">申し込む</Button>
