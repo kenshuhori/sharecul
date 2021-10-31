@@ -20,7 +20,7 @@ const IndexPage = () => {
   }
   return (
     <form onSubmit={submit}>
-      <Flex height="100vh" alignItems="center" justifyContent="center">
+      <Flex alignItems="center" justifyContent="center">
         <Flex direction="column" background={formBackground} p={12} rounded={6}>
           <Heading mb={6}>Sign Up</Heading>
           <Text fontSize={12}>お名前</Text>

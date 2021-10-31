@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import { AdminLayout } from '@/components/admin/layout';
 import { Layout } from '@/components/layout';
 import Head from 'next/head'
-import '@/styles/app.css'
+import '@/styles/app.scss'
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   if (router.route.startsWith("/admin")) {

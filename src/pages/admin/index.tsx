@@ -9,7 +9,7 @@ const IndexPage = () => {
     console.log(response);
   }
   return (
-    <Flex height="100vh" alignItems="center" justifyContent="center">
+    <Flex alignItems="center" justifyContent="center">
       <Flex direction="column" background={formBackground} p={12} rounded={6}>
         <Heading mb={6}>Log in</Heading>
         <Input placeholder="kenshuhori@gmail.com" varient="Filled" mb={3} type="email" />

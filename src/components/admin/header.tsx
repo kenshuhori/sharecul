@@ -5,7 +5,7 @@ export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <header>
-      <Flex pos="fixed" w="100%" bg="teal">
+      <Flex pos="fixed" h="60px" w="100%" bg="teal">
         <Box p="4" color="white">
           シェアカル
         </Box>
