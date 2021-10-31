@@ -34,7 +34,7 @@ export const Header = () => {
         </Box>
         <Spacer />
         <Box p="4">
-          <b>About</b>
+          <Link href="/about"><b>About</b></Link>
         </Box>
         <Box p="2">
           <Menu>

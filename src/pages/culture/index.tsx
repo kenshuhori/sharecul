@@ -25,7 +25,7 @@ const IndexPage = () => {
       <Stack>
         <Box>
           <Center pt={8}>
-            <Text fontSize="3xl"><strong>お申し込み確認</strong></Text>
+            <Text fontSize="3xl"><strong>お申込み</strong></Text>
           </Center>
         </Box>
         <Box>
@@ -75,7 +75,7 @@ const IndexPage = () => {
                         <Textarea placeholder="ご意見ご要望・予め伝えておきたいこと" size="md" resize="vertical" h="300px" />
                       </Box>
                       <Box justifyContent="flex-end">
-                        <Button colorScheme="teal" size="md" w="100%">申し込む</Button>
+                        <Button colorScheme="teal" size="md" w="100%">確認画面へ</Button>
                       </Box>
                     </Stack>
                   </Container>
