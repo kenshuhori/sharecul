@@ -57,7 +57,9 @@ export const Header = () => {
           ></IconButton>
         </Box>
         <Box p="2">
-          <Button colorScheme="teal" size="md"><b>ログイン</b></Button>
+          <Link href="/signin" _hover={{ textDecoration: "none" }}>
+            <Button colorScheme="teal" size="md"><b>ログイン</b></Button>
+          </Link>
         </Box>
       </Flex>
     </header>

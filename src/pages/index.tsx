@@ -10,6 +10,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Link,
   Select,
   Stack,
   Spacer,
@@ -86,7 +87,9 @@ const IndexPage = () => {
                         </Box>
                         <Spacer />
                         <Box justifyContent="flex-end">
-                          <Button colorScheme="teal" size="md" w="100%">申し込む</Button>
+                          <Link href="/culture" _hover={{ textDecoration: "none" }}>
+                            <Button colorScheme="teal" size="md" w="100%">申し込む</Button>
+                          </Link>
                         </Box>
                       </Stack>
                     </Container>

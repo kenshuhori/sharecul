@@ -10,6 +10,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Link,
   Select,
   Stack,
   Spacer,
@@ -75,7 +76,9 @@ const IndexPage = () => {
                         <Textarea placeholder="ご意見ご要望・予め伝えておきたいこと" size="md" resize="vertical" h="300px" />
                       </Box>
                       <Box justifyContent="flex-end">
-                        <Button colorScheme="teal" size="md" w="100%">確認画面へ</Button>
+                        <Link href="/culture/confirm" _hover={{ textDecoration: "none" }}>
+                          <Button colorScheme="teal" size="md" w="100%">確認画面へ</Button>
+                        </Link>
                       </Box>
                     </Stack>
                   </Container>
