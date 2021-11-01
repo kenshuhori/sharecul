@@ -10,7 +10,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import {
-  MdCheckCircle,
+  MdFace,
+  MdAccountBox,
   MdSettings
 } from "react-icons/md";
 
@@ -19,15 +20,21 @@ export const SideNav = () => {
   return (
     <Flex w="20%" bg={backGround}>
       <List w="100%" boxShadow="lg">
-        <ListItem p="16px" boxShadow="base" _hover={{ backgroundColor: "gray.300", cursor: "pointer" }}>
-          <ListIcon as={MdCheckCircle} color="green.500" />カルチャー
-        </ListItem>
-        <ListItem p="16px" boxShadow="base" _hover={{ backgroundColor: "gray.300", cursor: "pointer" }}>
-          <ListIcon as={MdCheckCircle} color="green.500" />ユーザー
-        </ListItem>
-        <ListItem p="16px" boxShadow="base" _hover={{ backgroundColor: "gray.300", cursor: "pointer" }}>
-          <ListIcon as={MdSettings} color="green.500" />設定
-        </ListItem>
+        <Link href="/admin/cultures" _hover={{ textDecoration: "none" }}>
+          <ListItem p="16px" boxShadow="base" _hover={{ backgroundColor: "gray.300", cursor: "pointer" }}>
+            <ListIcon as={MdFace} h={5} w={6} color="green.600" />カルチャー
+          </ListItem>
+        </Link>
+        <Link href="/admin/users" _hover={{ textDecoration: "none" }}>
+          <ListItem p="16px" boxShadow="base" _hover={{ backgroundColor: "gray.300", cursor: "pointer" }}>
+            <ListIcon as={MdAccountBox} h={5} w={6}  color="green.600" />ユーザー
+          </ListItem>
+        </Link>
+        <Link href="/admin/settings" _hover={{ textDecoration: "none" }}>
+          <ListItem p="16px" boxShadow="base" _hover={{ backgroundColor: "gray.300", cursor: "pointer" }}>
+            <ListIcon as={MdSettings} h={5} w={6}  color="green.600" />設定
+          </ListItem>
+        </Link>
       </List>
     </Flex>
   );
