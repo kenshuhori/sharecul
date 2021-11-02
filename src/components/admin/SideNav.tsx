@@ -26,7 +26,7 @@ export const SideNav = () => {
     <Flex w="20%" bg={normalGround}>
       <List w="100%" boxShadow="lg">
         {pages.map(page => {
-          let bg = normalGround
+          let bg = ""
           if (page.href == router.pathname) {
             bg = hoverGround
           }
