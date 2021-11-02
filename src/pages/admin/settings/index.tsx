@@ -2,12 +2,12 @@ import { Flex, Heading, Input, Button, useColorModeValue } from '@chakra-ui/reac
 import { ContentHeader } from '@/components/admin/ContentHeader';
 import api from '@/utils/api'
 
-const CulturesPage = () => {
+const SettingsPage = () => {
   return (
     <>
-      <ContentHeader contentName="カルチャー" useNew="true" newPath="/admin/cultures/new"></ContentHeader>
+      <ContentHeader contentName="設定" useNew="false"></ContentHeader>
     </>
   )
 }
 
-export default CulturesPage
+export default SettingsPage
