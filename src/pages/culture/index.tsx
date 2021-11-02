@@ -18,6 +18,7 @@ import {
   Textarea,
   useColorModeValue,
 } from '@chakra-ui/react'
+import { LinkButton } from "@/components/utils/LinkButton"
 import { SearchIcon } from '@chakra-ui/icons'
 
 const IndexPage = () => {
@@ -76,9 +77,7 @@ const IndexPage = () => {
                         <Textarea placeholder="ご意見ご要望・予め伝えておきたいこと" size="md" resize="vertical" h="300px" />
                       </Box>
                       <Box justifyContent="flex-end">
-                        <Link href="/culture/confirm" _hover={{ textDecoration: "none" }}>
-                          <Button colorScheme="teal" size="md" w="100%">確認画面へ</Button>
-                        </Link>
+                        <LinkButton name="確認画面へ" path="/culture/confirm"></LinkButton>
                       </Box>
                     </Stack>
                   </Container>

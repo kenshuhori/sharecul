@@ -17,6 +17,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react'
+import { LinkButton } from "@/components/utils/LinkButton"
 import { SearchIcon } from '@chakra-ui/icons'
 
 const IndexPage = () => {
@@ -87,9 +88,7 @@ const IndexPage = () => {
                         </Box>
                         <Spacer />
                         <Box justifyContent="flex-end">
-                          <Link href="/culture" _hover={{ textDecoration: "none" }}>
-                            <Button colorScheme="teal" size="md" w="100%">申し込む</Button>
-                          </Link>
+                          <LinkButton name="申し込む" path="/culture"></LinkButton>
                         </Box>
                       </Stack>
                     </Container>

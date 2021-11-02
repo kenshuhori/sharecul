@@ -18,6 +18,7 @@ import {
   Textarea,
   useColorModeValue,
 } from '@chakra-ui/react'
+import { LinkButton } from "@/components/utils/LinkButton"
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("orange.50", "gray.700")
@@ -43,9 +44,7 @@ const IndexPage = () => {
             <Input placeholder="000xxxx0000" size="md" />
           </Box>
           <Box justifyContent="flex-end">
-            <Link href="/culture/confirm" _hover={{ textDecoration: "none" }}>
-              <Button colorScheme="teal" size="md" w="100%">ログインする</Button>
-            </Link>
+            <LinkButton name="ログインする" path="/culture/confirm"></LinkButton>
           </Box>
           <Box justifyContent="flex-end">
             <Center>
