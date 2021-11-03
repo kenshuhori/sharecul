@@ -14,8 +14,8 @@ import {
 import { useRouter } from 'next/router'
 
 export const SideNav = () => {
-  const normalGround = useColorModeValue("gray.200", "gray.700")
-  const hoverGround = useColorModeValue("gray.300", "gray.600")
+  const normalGround = useColorModeValue("teal.50", "teal.700")
+  const hoverGround = useColorModeValue("teal.100", "teal.500")
   const router = useRouter()
   const pages = [
     { icon: MdFace, name: "カルチャー", href: "/admin/cultures" },
