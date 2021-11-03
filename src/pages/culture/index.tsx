@@ -43,7 +43,7 @@ const IndexPage = () => {
                   <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
                     <Stack h="100%">
                       <Box>
-                        <Image src="/brothers-g351175e76_1920.jpg" alt="シェアカルアイテムの画像です" pb={8}></Image>
+                        <Image src="/brothers.jpg" alt="シェアカルアイテムの画像です" pb={8}></Image>
                       </Box>
                       <Box>
                         <Text fontSize="2xl"><b>タイトルが入ります</b></Text>

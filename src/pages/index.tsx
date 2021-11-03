@@ -27,7 +27,7 @@ const IndexPage = () => {
     <div>
       <Stack>
         <Box>
-          <Image src="/lake-gdecf3ad1d_1920.jpg" w="100%" h="300px" alt="シェアカルのテーマ画像です"></Image>
+          <Image src="/lake.jpg" w="100%" h="300px" alt="シェアカルのテーマ画像です"></Image>
         </Box>
         <Box>
           <Center pt={8}>
@@ -71,7 +71,7 @@ const IndexPage = () => {
                 <article>
                   <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
                     <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
-                      <Image src="/brothers-g351175e76_1920.jpg" alt="シェアカルアイテムの画像です"></Image>
+                      <Image src="/brothers.jpg" alt="シェアカルアイテムの画像です"></Image>
                     </Container>
                     <Container maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Stack h="100%">
