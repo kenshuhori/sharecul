@@ -53,7 +53,7 @@ const IndexPage = () => {
           </Box>
         </Stack>
       </Container>
-      <Center>
+      <Center mb="100px">
         <Link href="/signup" color="orange.500">アカウントをお持ちでない方はこちら</Link>
       </Center>
     </div>
