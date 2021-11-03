@@ -20,6 +20,7 @@ import { ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons'
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const background = useColorModeValue("white", "gray.700");
+  const isAuth = false;
   return (
     <header>
       <Flex pos="fixed" w="100%" h="90px" py={4} px="5%" bg={background} boxShadow="base">
@@ -56,9 +57,23 @@ export const Header = () => {
           ></IconButton>
         </Box>
         <Box p="2">
-          <Link href="/signin" _hover={{ textDecoration: "none" }}>
-            <Button colorScheme="teal" size="md"><b>ログイン</b></Button>
-          </Link>
+          {
+            (() => {
+              if (isAuth) {
+                return (
+                  <Link href="/mypage" _hover={{ textDecoration: "none" }}>
+                    <Button colorScheme="teal" size="md"><b>マイページ</b></Button>
+                  </Link>
+                )
+              } else {
+                return (
+                  <Link href="/signin" _hover={{ textDecoration: "none" }}>
+                    <Button colorScheme="teal" size="md"><b>ログイン</b></Button>
+                  </Link>
+                )
+              }
+            })()
+          }
         </Box>
       </Flex>
     </header>
