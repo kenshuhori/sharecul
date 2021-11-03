@@ -14,8 +14,9 @@ import {
 import { useRouter } from 'next/router'
 
 export const SideNav = () => {
-  const normalGround = useColorModeValue("teal.50", "teal.700")
+  const normalGround = useColorModeValue("teal.50", "teal.600")
   const hoverGround = useColorModeValue("teal.100", "teal.500")
+  const iconColor = useColorModeValue("green.600", "green.200")
   const router = useRouter()
   const pages = [
     { icon: MdFace, name: "カルチャー", href: "/admin/cultures" },
@@ -33,7 +34,7 @@ export const SideNav = () => {
           return (
             <Link href={page.href} _hover={{ textDecoration: "none" }}>
               <ListItem p="16px" boxShadow="base" bg={bg} _hover={{ bg: hoverGround, cursor: "pointer" }}>
-                <ListIcon as={page.icon} h={5} w={6} color="green.600" />{page.name}
+                <ListIcon as={page.icon} h={5} w={6} color={iconColor} />{page.name}
               </ListItem>
             </Link>
           )}

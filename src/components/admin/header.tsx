@@ -11,8 +11,9 @@ import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("teal", "teal.400")
-  const fontColor = useColorModeValue("white", "black")
+  const bg = useColorModeValue("teal", "teal.900")
+  const fontColor = useColorModeValue("white", "white")
+  const iconColor = useColorModeValue("black", "white")
   return (
     <header>
       <Flex pos="fixed" h="60px" w="100%" bg={bg} color={fontColor}>
@@ -29,7 +30,7 @@ export const Header = () => {
         <Box p="3">
           <IconButton
             size="sm"
-            color="black"
+            color={iconColor}
             aria-label="flick darkmode"
             icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
             onClick={toggleColorMode}
