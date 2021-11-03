@@ -29,7 +29,7 @@ export const Header = () => {
           </Link>
         </Box>
         <Box p="4" d={{ base: "none", md: "block" }}>
-          <Text fontSize="xs" color="orange.400"><b>みんなとシェアするカルチャー</b></Text>
+          <Text fontSize="xs" color="orange.400"><b>カルチャーをシェアする！</b></Text>
           <Text fontSize="md"><b>シェアカル ふたこ</b></Text>
         </Box>
         <Spacer />
@@ -42,9 +42,8 @@ export const Header = () => {
               <b>Category</b> <ChevronDownIcon />
             </MenuButton>
             <MenuList>
-              <MenuItem>生活品</MenuItem>
-              <MenuItem>知識・学び</MenuItem>
-              <MenuItem>アクティビティ</MenuItem>
+              <MenuItem>学びのシェア</MenuItem>
+              <MenuItem>モノのシェア</MenuItem>
             </MenuList>
           </Menu>
         </Box>
