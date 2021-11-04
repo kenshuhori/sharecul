@@ -60,4 +60,4 @@ const Signin = () => {
   )
 }
 
-export default IndexPage
+export default Signin

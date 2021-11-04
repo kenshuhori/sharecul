@@ -4,6 +4,7 @@ import {
   Flex,
   Image,
   Input,
+  Link,
   Menu,
   MenuButton,
   MenuList,
@@ -69,7 +70,20 @@ const CulturesPage = () => {
             return (
               <Tr>
                 <Td><Checkbox /></Td>
-                <Td><Image src="/brothers.jpg"></Image></Td>
+                <Td>
+                  <Stack spacing={1}>
+                    <Image src="/brothers.jpg"></Image>
+                    <Menu>
+                      <MenuButton transition="all 0.2s" border="1px solid" borderColor={borderColor} _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
+                        公開 <ChevronDownIcon />
+                      </MenuButton>
+                      <MenuList>
+                        <MenuItem>公開</MenuItem>
+                        <MenuItem>非公開</MenuItem>
+                      </MenuList>
+                    </Menu>
+                  </Stack>
+                </Td>
                 <Td>
                   <Stack>
                     <Box>タイトルが入ります</Box>
@@ -79,7 +93,13 @@ const CulturesPage = () => {
                   </Stack>
                 </Td>
                 <Td>著者名</Td>
-                <Td>編集する<br/>削除する</Td>
+                <Td>
+                  <Stack>
+                    <Link>編集する</Link>
+                    <Link>削除する</Link>
+                    <Link>公開する</Link>
+                  </Stack>
+                </Td>
               </Tr>
             )
           })}

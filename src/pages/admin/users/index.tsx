@@ -4,6 +4,7 @@ import {
   Flex,
   Image,
   Input,
+  Link,
   Menu,
   MenuButton,
   MenuList,
@@ -58,9 +59,8 @@ const UsersPage = () => {
         <Thead>
           <Tr>
             <Th w="3%"><Checkbox /></Th>
-            <Th w="15%">イメージ</Th>
-            <Th w="45%">内容</Th>
-            <Th w="14%">ユーザー</Th>
+            <Th w="15%">アイコン</Th>
+            <Th w="59%">お名前</Th>
             <Th w="13%">操作</Th>
           </Tr>
         </Thead>
@@ -69,17 +69,20 @@ const UsersPage = () => {
             return (
               <Tr>
                 <Td><Checkbox /></Td>
-                <Td><Image src="/brothers.jpg"></Image></Td>
+                <Td>
+                  <Image src="/brothers.jpg" w={16} h={16} borderRadius="50%" />
+                </Td>
                 <Td>
                   <Stack>
-                    <Box>タイトルが入ります</Box>
-                    <Box>
-                      説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。
-                    </Box>
+                    <Box>著者名が入ります</Box>
                   </Stack>
                 </Td>
-                <Td>著者名</Td>
-                <Td>編集する<br/>削除する</Td>
+                <Td>
+                  <Stack>
+                    <Link>編集する</Link>
+                    <Link>削除する</Link>
+                  </Stack>
+                </Td>
               </Tr>
             )
           })}
