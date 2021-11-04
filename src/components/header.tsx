@@ -30,7 +30,7 @@ export const Header = () => {
           </Link>
         </Box>
         <Box p="4" d={{ base: "none", md: "block" }}>
-          <Text fontSize="xs" color="orange.400"><b>カルチャーをシェアする！</b></Text>
+          <Text fontSize="xs" color="orange.400"><b>みんなとシェアするカルチャー</b></Text>
           <Text fontSize="md"><b>シェアカル ふたこ</b></Text>
         </Box>
         <Spacer />
