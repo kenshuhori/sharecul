@@ -67,7 +67,7 @@ export const Header = () => {
                 )
               } else {
                 return (
-                  <Link href="/signin" _hover={{ textDecoration: "none" }}>
+                  <Link href="/auth/signin" _hover={{ textDecoration: "none" }}>
                     <Button colorScheme="teal" size="md"><b>ログイン</b></Button>
                   </Link>
                 )

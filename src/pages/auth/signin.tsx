@@ -20,12 +20,12 @@ import {
 } from '@chakra-ui/react'
 import { LinkButton } from "@/components/utils/LinkButton"
 
-const IndexPage = () => {
+const Signin = () => {
   const formBackground = useColorModeValue("orange.50", "gray.700")
   return (
     <div>
       <Container background={formBackground} >
-        <Stack spacing={10} mx="auto" mt="100px" mb="50px" px="80px" pt="40px" pb="80px" >
+        <Stack spacing={8} mx="auto" mt="100px" mb="50px" px="80px" pt="40px" pb="50px" >
           <Box>
             <Center>
               <Text fontSize="2xl"><strong>ログイン</strong></Text>
@@ -34,7 +34,6 @@ const IndexPage = () => {
               <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
             </Center>
           </Box>
-          <Spacer />
           <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
             <Input placeholder="sharecul@example.com" size="md" />
@@ -43,6 +42,7 @@ const IndexPage = () => {
             <Text fontSize="sm" mb="6px">パスワード</Text>
             <Input placeholder="000xxxx0000" size="md" />
           </Box>
+          <Spacer />
           <Box justifyContent="flex-end">
             <LinkButton name="ログインする" path="/culture/confirm"></LinkButton>
           </Box>
