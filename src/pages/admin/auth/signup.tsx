@@ -14,14 +14,21 @@ const IndexPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirm, setPasswordConfirm] = useState("");
-  const submit = async (data) => {
-    let response = await api.post('/api/admin', data)
-    console.log(response);
+  const submit = async event => {
+    event.preventDefault()
+    const res = await api.post('/api/admin',
+      {
+        name: event.target.name.value,
+        email: event.target.email.value,
+        password: event.target.password.value
+      }
+    )
+    console.log(res)
   }
   return (
     <form onSubmit={submit}>
-      <Flex alignItems="center" justifyContent="center">
-        <Flex direction="column" background={formBackground} p={12} rounded={6}>
+      <Flex alignItems="center" justifyContent="center" m={8}>
+        <Flex direction="column" background={formBackground} p={12}>
           <Heading mb={6}>Sign Up</Heading>
           <Text fontSize={12}>お名前</Text>
           <InputGroup>
@@ -43,7 +50,7 @@ const IndexPage = () => {
             <Input placeholder="******" varient="Fileed" mb={6} type="password" value={password_confirm} onChange={handleChangePasswordConfirm} />
             <InputRightElement children={<InputChecker type="password_confirm" value={!!password_confirm && password == password_confirm ? 'true' : 'false'} />} />
           </InputGroup>
-          <Button type="submit" colorScheme="teal" mb={6}>登録</Button>
+          <Button type="submit" colorScheme="teal" mb={4}>登録</Button>
         </Flex>
       </Flex>
     </form>

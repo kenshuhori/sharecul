@@ -25,7 +25,7 @@ const Signin = () => {
   return (
     <div>
       <Container background={formBackground} >
-        <Stack spacing={8} mx="auto" mt="100px" mb="50px" px="80px" pt="40px" pb="50px" >
+        <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" pt="40px" pb="50px" >
           <Box>
             <Center>
               <Text fontSize="2xl"><strong>ログイン</strong></Text>
@@ -54,7 +54,7 @@ const Signin = () => {
         </Stack>
       </Container>
       <Center mb="100px">
-        <Link href="/signup" color="orange.500">アカウントをお持ちでない方はこちら</Link>
+        <Link href="/auth/signup" color="orange.500">アカウントをお持ちでない方はこちら</Link>
       </Center>
     </div>
   )

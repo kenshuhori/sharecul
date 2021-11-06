@@ -26,10 +26,10 @@ export const Header = () => {
       <Flex pos="fixed" w="100%" h="90px" py={4} px="5%" bg={background} boxShadow="base">
         <Box>
           <Link href="/">
-            <Image src="/sharecul.png" h="60px" alt="シェアカルのロゴです"></Image>
+            <Image src="/sharecul.png" h="55px" alt="シェアカルのロゴです"></Image>
           </Link>
         </Box>
-        <Box p="4" d={{ base: "none", md: "block" }}>
+        <Box p="2" d={{ base: "none", md: "block" }}>
           <Text fontSize="xs" color="orange.400"><b>みんなとシェアするカルチャー</b></Text>
           <Text fontSize="md"><b>シェアカル ふたこ</b></Text>
         </Box>
