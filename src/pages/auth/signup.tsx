@@ -18,24 +18,34 @@ import {
   Textarea,
   useColorModeValue,
 } from '@chakra-ui/react'
+import { useState } from 'react'
+import { supabase } from '@/utils/supabase'
 import api from '@/utils/api'
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("orange.50", "gray.700")
-  const submit = async event => {
-    event.preventDefault()
-    const res = await api.post('/api/auth/signup',
-      {
-        name: event.target.name.value,
-        email: event.target.email.value,
-        password: event.target.password.value
-      }
-    )
-    console.log(res)
-    // result.user => 'Ada Lovelace'
+  const [loading, setLoading] = useState(false)
+  const handleSubmit = async (event) => {
+    try {
+      setLoading(true)
+      let email = event.target.email.value
+      let password = event.target.password.value
+      const { error } = await supabase.auth.signUp({ email, password })
+      if (error) throw error
+    } catch (error) {
+      console.log(error)
+      alert(error.error_description || error.message)
+    } finally {
+      setLoading(false)
+    }
   }
   return (
-    <form onSubmit={submit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit(e)
+      }}
+    >
       <Container background={formBackground} >
         <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" py="50px">
           <Box>
@@ -64,7 +74,9 @@ const IndexPage = () => {
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">
-            <Button type="submit" colorScheme="teal" size="md" w="100%">登録する</Button>
+            <Button type="submit" colorScheme="teal" size="md" w="100%" disabled={loading}>
+              <span>{loading ? '登録しています...' : '登録する'}</span>
+            </Button>
           </Box>
         </Stack>
       </Container>
