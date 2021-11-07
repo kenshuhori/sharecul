@@ -11,7 +11,6 @@ const apiRoute = nextConnect({
 });
 
 apiRoute.post(async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("ここ")
   console.log("Request to POST:api/auth/signup has come!!")
   let result = { hoge: 'signupしましたよ' }
   res.status(200).json(result);
