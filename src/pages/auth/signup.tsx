@@ -33,6 +33,9 @@ const IndexPage = () => {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
     })
+    if (session) {
+      location.href = '/mypage/account'
+    }
   }, [])
 
   const handleSubmit = async (event) => {
