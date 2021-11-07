@@ -19,7 +19,6 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
-import { GetServerSideProps } from 'next'
 import { supabase } from '@/utils/supabase'
 import api from '@/utils/api'
 

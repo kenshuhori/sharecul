@@ -24,12 +24,14 @@ import {
 } from '@chakra-ui/react'
 import { ContentHeader } from '@/components/admin/ContentHeader';
 import { ChevronDownIcon } from '@chakra-ui/icons'
+import { useSession } from '@/utils/useSession'
 import api from '@/utils/api'
 
 const CulturesPage = () => {
   const bg = useColorModeValue("white", "gray.700")
   const borderColor = useColorModeValue("gray.400", "white")
   const tableColor = useColorModeValue("black", "white")
+  const { session } = useSession();
   return (
     <>
       <ContentHeader contentName="カルチャー" useNew="true" newPath="/admin/cultures/new"></ContentHeader>

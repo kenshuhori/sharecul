@@ -5,42 +5,62 @@ import { AdminAuthLayout } from '@/components/admin/auth/layout';
 import { Layout } from '@/components/layout';
 import Head from 'next/head'
 import '@/styles/app.scss'
+import React from "react";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
-function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-  if (router.route.startsWith("/admin/auth")) {
+const CustomComponent: React.VFC<{pathname: string, children: React.ReactNode}> = ({pathname, children}) => {
+  if (pathname.startsWith("/admin/auth")) {
     return (
-      <ChakraProvider>
+      <>
         <Head>
           <title>シェアカルふたこ管理</title>
         </Head>
         <AdminAuthLayout>
-          <Component {...pageProps} />
+          {children}
         </AdminAuthLayout>
-      </ChakraProvider>
+      </>
     )
-  } else if (router.route.startsWith("/admin")) {
+  } else if (pathname.startsWith("/admin")) {
     return (
-      <ChakraProvider>
+      <>
         <Head>
           <title>シェアカルふたこ管理</title>
         </Head>
         <AdminLayout>
-          <Component {...pageProps} />
+          {children}
         </AdminLayout>
-      </ChakraProvider>
+      </>
     )
   } else {
     return (
-      <ChakraProvider>
+      <>
         <Head>
           <title>シェアカルふたこ</title>
         </Head>
         <Layout>
-          <Component {...pageProps} />
+          {children}
         </Layout>
-      </ChakraProvider>
+      </>
     )
   }
+}
+
+function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
+  return (
+    <RecoilRoot>
+      <ChakraProvider>
+        <CustomComponent pathname={router.pathname}>
+          <Component {...pageProps} />
+        </CustomComponent>
+      </ChakraProvider>
+    </RecoilRoot>
+  )
 }
 
 export default MyApp
