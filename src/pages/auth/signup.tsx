@@ -18,13 +18,23 @@ import {
   Textarea,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { GetServerSideProps } from 'next'
 import { supabase } from '@/utils/supabase'
 import api from '@/utils/api'
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("orange.50", "gray.700")
+  const [session, setSession] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
   const handleSubmit = async (event) => {
     try {
       setLoading(true)
@@ -39,6 +49,7 @@ const IndexPage = () => {
       setLoading(false)
     }
   }
+
   return (
     <form
       onSubmit={(e) => {
