@@ -9,19 +9,19 @@ interface SupabaseEq {
 export async function readAll (tablename: string) {
   let { data: results, error } = await supabase
     .from(tablename)
-    .select('*')
-  return results
+    .select('*');
+  return results;
 };
 export async function read (tablename: string, eq: SupabaseEq) {
   let { data: results, error } = await supabase
     .from(tablename)
     .select('*')
-    .eq(eq.column, eq.value)
-  return results
+    .eq(eq.column, eq.value);
+  return results;
 };
 export async function upsertRow (tablename: string, values: Object) {
   const { data, error } = await supabase
     .from(tablename)
-    .upsert([values])
-  return data
+    .upsert([values]);
+  return data;
 };

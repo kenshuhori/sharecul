@@ -17,9 +17,9 @@ import {
   Text,
   Textarea,
   useColorModeValue,
-} from '@chakra-ui/react'
-import { LinkButton } from "@/components/utils/LinkButton"
-import { SearchIcon } from '@chakra-ui/icons'
+} from '@chakra-ui/react';
+import { LinkButton } from "@/components/utils/LinkButton";
+import { SearchIcon } from '@chakra-ui/icons';
 
 const IndexPage = () => {
   return (
@@ -88,7 +88,7 @@ const IndexPage = () => {
         </Box>
       </Stack>
     </div>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

@@ -1,5 +1,5 @@
 import type { VFC } from 'react';
-import { CheckIcon } from '@chakra-ui/icons'
+import { CheckIcon } from '@chakra-ui/icons';
 
 type Props = {type: string, value: string};
 

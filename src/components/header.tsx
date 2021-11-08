@@ -9,13 +9,12 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
   Spacer,
   Text,
   useColorMode,
   useColorModeValue
-} from "@chakra-ui/react"
-import { ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons'
+} from "@chakra-ui/react";
+import { ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -64,13 +63,13 @@ export const Header = () => {
                   <Link href="/mypage" _hover={{ textDecoration: "none" }}>
                     <Button colorScheme="teal" size="md"><b>マイページ</b></Button>
                   </Link>
-                )
+                );
               } else {
                 return (
                   <Link href="/auth/signin" _hover={{ textDecoration: "none" }}>
                     <Button colorScheme="teal" size="md"><b>ログイン</b></Button>
                   </Link>
-                )
+                );
               }
             })()
           }

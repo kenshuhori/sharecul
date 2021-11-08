@@ -14,5 +14,5 @@ export const AdminLayout: VFC<{ children: ReactNode }> = ({ children }) => {
       </Flex>
       <Footer />
     </div>
-  )
-}
+  );
+};

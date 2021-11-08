@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import { supabase } from '@/utils/supabase'
+import { useState } from 'react';
+import { supabase } from '@/utils/supabase';
 
 export default function Signin() {
-  const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async (email, password) => {
     try {
-      setLoading(true)
-      const { error } = await supabase.auth.signIn({ email, password })
-      if (error) throw error
-      alert('Check your email for the login link!')
+      setLoading(true);
+      const { error } = await supabase.auth.signIn({ email, password });
+      if (error) throw error;
+      alert('Check your email for the login link!');
     } catch (error) {
-      console.log(error)
-      alert(error.error_description || error.message)
+      console.log(error);
+      alert(error.error_description || error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="row flex flex-center">
@@ -44,8 +44,8 @@ export default function Signin() {
         <div>
           <button
             onClick={(e) => {
-              e.preventDefault()
-              handleLogin(email, password)
+              e.preventDefault();
+              handleLogin(email, password);
             }}
             className="button block"
             disabled={loading}
@@ -55,5 +55,5 @@ export default function Signin() {
         </div>
       </div>
     </div>
-  )
+  );
 }

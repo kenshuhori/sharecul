@@ -17,11 +17,11 @@ import {
   Text,
   Textarea,
   useColorModeValue,
-} from '@chakra-ui/react'
-import { LinkButton } from "@/components/utils/LinkButton"
+} from '@chakra-ui/react';
+import { LinkButton } from "@/components/utils/LinkButton";
 
 const Signin = () => {
-  const formBackground = useColorModeValue("orange.50", "gray.700")
+  const formBackground = useColorModeValue("orange.50", "gray.700");
   return (
     <div>
       <Container background={formBackground} >
@@ -57,7 +57,7 @@ const Signin = () => {
         <Link href="/auth/signup" color="orange.500">アカウントをお持ちでない方はこちら</Link>
       </Center>
     </div>
-  )
-}
+  );
+};
 
-export default Signin
+export default Signin;

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import {
   Button,
   Flex,
@@ -8,10 +8,10 @@ import {
   InputRightElement,
   Text,
   useColorModeValue
-} from '@chakra-ui/react'
-import { supabase } from '@/utils/supabase'
-import { InputChecker } from '@/components/utils/InputChecker'
-import api from '@/utils/api'
+} from '@chakra-ui/react';
+import { supabase } from '@/utils/supabase';
+import { InputChecker } from '@/components/utils/InputChecker';
+import api from '@/utils/api';
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("gray.100", "gray.700");
@@ -19,15 +19,15 @@ const IndexPage = () => {
   const [password, setPassword] = useState("");
   const [password_confirm, setPasswordConfirm] = useState("");
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    let email = event.target.email.value
-    let password = event.target.password.value
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
     const res = await supabase.auth.signUp({
       email,
       password,
     });
-    console.log(res)
-  }
+    console.log(res);
+  };
   return (
     <form onSubmit={handleSubmit}>
       <Flex alignItems="center" justifyContent="center" m={8}>
@@ -35,24 +35,30 @@ const IndexPage = () => {
           <Heading mb={6}>アカウント登録</Heading>
           <Text fontSize={12}>メールアドレス</Text>
           <InputGroup>
-            <Input name="email" placeholder="sharecul@example.com" varient="Filled" mb={3} type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} />
-            <InputRightElement children={<InputChecker type="email" value={email} />} />
+            <Input name="email" placeholder="sharecul@example.com" varient="Filled" mb={3} type="email" value={email} onChange={(e) => {setEmail(e.target.value);}} />
+            <InputRightElement>
+              <InputChecker type="email" value={email}/>
+            </InputRightElement>
           </InputGroup>
           <Text fontSize={12}>パスワード</Text>
           <InputGroup>
-            <Input name="password" placeholder="******" varient="Fileed" mb={6} type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} />
-            <InputRightElement children={<InputChecker type="password" value={password} />} />
+            <Input name="password" placeholder="******" varient="Fileed" mb={6} type="password" value={password} onChange={(e) => {setPassword(e.target.value);}} />
+            <InputRightElement>
+              <InputChecker type="password" value={password}/>
+            </InputRightElement>
           </InputGroup>
           <Text fontSize={12}>パスワード確認用</Text>
           <InputGroup>
-            <Input placeholder="******" varient="Fileed" mb={6} type="password" value={password_confirm} onChange={(e) => {setPasswordConfirm(e.target.value)}} />
-            <InputRightElement children={<InputChecker type="password_confirm" value={!!password_confirm && password == password_confirm ? 'true' : 'false'} />} />
+            <Input placeholder="******" varient="Fileed" mb={6} type="password" value={password_confirm} onChange={(e) => {setPasswordConfirm(e.target.value);}} />
+            <InputRightElement>
+              <InputChecker type="password_confirm" value={!!password_confirm && password == password_confirm ? 'true' : 'false'}/>
+            </InputRightElement>
           </InputGroup>
           <Button type="submit" colorScheme="teal" mb={4}>登録</Button>
         </Flex>
       </Flex>
     </form>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

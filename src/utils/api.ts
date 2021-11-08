@@ -5,12 +5,12 @@ const api = {
       headers: {
         'Content-Type': 'application/json'
       },
-    })
+    });
     if (!response.ok) {
-      const err = await response.json()
-      throw new Error(err)
+      const err = await response.json();
+      throw new Error(err);
     }
-    return await response.json()
+    return await response.json();
   },
 
   post: async (url: string, data: { [key: string]: string }) => {
@@ -20,13 +20,13 @@ const api = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data),
-    })
+    });
     if (!response.ok) {
-      const err = await response.json()
-      throw new Error(err)
+      const err = await response.json();
+      throw new Error(err);
     }
-    return await response.json()
+    return await response.json();
   },
-}
+};
 
-export default api
+export default api;

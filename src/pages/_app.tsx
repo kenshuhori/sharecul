@@ -3,16 +3,10 @@ import type { AppProps } from 'next/app';
 import { AdminLayout } from '@/components/admin/layout';
 import { AdminAuthLayout } from '@/components/admin/auth/layout';
 import { Layout } from '@/components/layout';
-import Head from 'next/head'
-import '@/styles/app.scss'
+import Head from 'next/head';
+import '@/styles/app.scss';
 import React from "react";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 const CustomComponent: React.VFC<{pathname: string, children: React.ReactNode}> = ({pathname, children}) => {
   if (pathname.startsWith("/admin/auth")) {
@@ -25,7 +19,7 @@ const CustomComponent: React.VFC<{pathname: string, children: React.ReactNode}> 
           {children}
         </AdminAuthLayout>
       </>
-    )
+    );
   } else if (pathname.startsWith("/admin")) {
     return (
       <>
@@ -36,7 +30,7 @@ const CustomComponent: React.VFC<{pathname: string, children: React.ReactNode}> 
           {children}
         </AdminLayout>
       </>
-    )
+    );
   } else {
     return (
       <>
@@ -47,9 +41,9 @@ const CustomComponent: React.VFC<{pathname: string, children: React.ReactNode}> 
           {children}
         </Layout>
       </>
-    )
+    );
   }
-}
+};
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   return (
@@ -60,7 +54,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         </CustomComponent>
       </ChakraProvider>
     </RecoilRoot>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

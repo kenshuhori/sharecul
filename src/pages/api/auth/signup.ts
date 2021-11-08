@@ -1,5 +1,5 @@
 import nextConnect from 'next-connect';
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const apiRoute = nextConnect({
   onError(error, req: NextApiRequest, res: NextApiResponse) {
@@ -11,8 +11,8 @@ const apiRoute = nextConnect({
 });
 
 apiRoute.post(async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("Request to POST:api/auth/signup has come!!")
-  let result = { hoge: 'signupしましたよ' }
+  console.log("Request to POST:api/auth/signup has come!!");
+  const result = { hoge: 'signupしましたよ' };
   res.status(200).json(result);
 });
 

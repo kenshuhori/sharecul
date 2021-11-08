@@ -1,23 +1,10 @@
 import {
   Box,
-  Button,
   Center,
-  Container,
   Divider,
-  Flex,
-  HStack,
-  Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Select,
   Stack,
-  Spacer,
   Text,
-  Textarea,
-  useColorModeValue,
-} from '@chakra-ui/react'
-import { SearchIcon } from '@chakra-ui/icons'
+} from '@chakra-ui/react';
 
 const IndexPage = () => {
   return (
@@ -44,7 +31,7 @@ const IndexPage = () => {
         </Box>
       </Stack>
     </div>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

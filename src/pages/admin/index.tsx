@@ -1,8 +1,8 @@
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps } from 'next';
 
 const IndexPage = () => {
   return "";
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async () => {
   return {
@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       permanent: true,
       destination: '/admin/cultures'
     }
-  }
-}
+  };
+};
 
-export default IndexPage
+export default IndexPage;

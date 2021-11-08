@@ -9,5 +9,5 @@ export const LinkButton: VFC<Props> = (props) => {
     <Link href={path} _hover={{ textDecoration: "none" }}>
       <Button colorScheme="teal" size="md" w="100%">{name}</Button>
     </Link>
-  )
+  );
 };

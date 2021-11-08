@@ -9,5 +9,5 @@ export const AdminAuthLayout: VFC<{ children: ReactNode }> = ({ children }) => {
       <main>{children}</main>
       <Footer />
     </div>
-  )
-}
+  );
+};

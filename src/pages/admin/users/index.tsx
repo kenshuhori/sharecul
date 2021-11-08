@@ -21,15 +21,15 @@ import {
   TableCaption,
   Text,
   useColorModeValue
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 import { ContentHeader } from '@/components/admin/ContentHeader';
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import api from '@/utils/api'
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import api from '@/utils/api';
 
 const UsersPage = () => {
-  const bg = useColorModeValue("white", "gray.700")
-  const borderColor = useColorModeValue("gray.400", "white")
-  const tableColor = useColorModeValue("black", "white")
+  const bg = useColorModeValue("white", "gray.700");
+  const borderColor = useColorModeValue("gray.400", "white");
+  const tableColor = useColorModeValue("black", "white");
   return (
     <>
       <ContentHeader contentName="ユーザー" useNew="true" newPath="/admin/users/new"></ContentHeader>
@@ -84,12 +84,12 @@ const UsersPage = () => {
                   </Stack>
                 </Td>
               </Tr>
-            )
+            );
           })}
         </Tbody>
       </Table>
     </>
-  )
-}
+  );
+};
 
-export default UsersPage
+export default UsersPage;

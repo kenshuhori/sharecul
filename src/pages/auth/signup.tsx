@@ -4,59 +4,51 @@ import {
   Center,
   Container,
   Divider,
-  Flex,
-  HStack,
-  Image,
   Input,
-  InputGroup,
-  InputLeftElement,
-  Link,
-  Select,
   Stack,
   Spacer,
   Text,
-  Textarea,
   useColorModeValue,
-} from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
-import { supabase } from '@/utils/supabase'
-import api from '@/utils/api'
+} from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/utils/supabase';
+import api from '@/utils/api';
 
 const IndexPage = () => {
-  const formBackground = useColorModeValue("orange.50", "gray.700")
-  const [session, setSession] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const formBackground = useColorModeValue("orange.50", "gray.700");
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setSession(supabase.auth.session())
+    setSession(supabase.auth.session());
     supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
+      setSession(session);
+    });
     if (session) {
-      location.href = '/mypage/account'
+      location.href = '/mypage/account';
     }
-  }, [])
+  }, []);
 
   const handleSubmit = async (event) => {
     try {
-      setLoading(true)
-      let email = event.target.email.value
-      let password = event.target.password.value
-      const { error } = await supabase.auth.signUp({ email, password })
-      if (error) throw error
+      setLoading(true);
+      const email = event.target.email.value;
+      const password = event.target.password.value;
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) throw error;
     } catch (error) {
-      console.log(error)
-      alert(error.error_description || error.message)
+      console.log(error);
+      alert(error.error_description || error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit(e)
+        handleSubmit(e);
       }}
     >
       <Container background={formBackground} >
@@ -94,7 +86,7 @@ const IndexPage = () => {
         </Stack>
       </Container>
     </form>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

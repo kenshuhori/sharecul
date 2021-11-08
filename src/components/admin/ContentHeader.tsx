@@ -5,11 +5,11 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { LinkButton } from "@/components/utils/LinkButton"
+import { LinkButton } from "@/components/utils/LinkButton";
 
 export const ContentHeader = (props) => {
   const {contentName, useNew, newPath} = props;
-  const bg = useColorModeValue("white", "gray.700")
+  const bg = useColorModeValue("white", "gray.700");
   if (useNew == "true") {
     return (
       <Flex w="100%" p="6px" bg={bg}>
@@ -26,4 +26,4 @@ export const ContentHeader = (props) => {
       </Flex>
     );
   }
-}
+};

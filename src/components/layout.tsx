@@ -9,5 +9,5 @@ export const Layout: VFC<{ children: ReactNode }> = ({ children }) => {
       <main>{children}</main>
       <Footer />
     </div>
-  )
-}
+  );
+};
