@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/utils/supabase';
-import api from '@/utils/api';
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("orange.50", "gray.700");

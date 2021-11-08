@@ -4,26 +4,53 @@ import {
   Center,
   Container,
   Divider,
-  Flex,
-  HStack,
-  Image,
   Input,
-  InputGroup,
-  InputLeftElement,
   Link,
-  Select,
   Stack,
   Spacer,
   Text,
-  Textarea,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { LinkButton } from "@/components/utils/LinkButton";
+import { useState, useEffect } from 'react';
+import { supabase } from '@/utils/supabase';
+import { useSession } from '@/utils/useSession';
 
 const Signin = () => {
   const formBackground = useColorModeValue("orange.50", "gray.700");
+  const [loading, setLoading] = useState(false);
+  const { session, setSession } = useSession();
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+    console.log(session)
+    if (session) {
+      location.href = '/mypage/account';
+    }
+  }, []);
+
+  const handleSubmit = async (event) => {
+    try {
+      setLoading(true);
+      const email = event.target.email.value;
+      const password = event.target.password.value;
+      const { error } = await supabase.auth.signIn({ email, password });
+      if (error) throw error;
+    } catch (error) {
+      console.log(error.error_description || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div>
+    <form
+      onSubmit={(e: React.FormEvent) => {
+        e.preventDefault();
+        handleSubmit(e);
+      }}
+    >
       <Container background={formBackground} >
         <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" pt="40px" pb="50px" >
           <Box>
@@ -36,15 +63,17 @@ const Signin = () => {
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
-            <Input placeholder="sharecul@example.com" size="md" />
+            <Input name="email" type="email" placeholder="sharecul@example.com" size="md" />
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">パスワード</Text>
-            <Input placeholder="000xxxx0000" size="md" />
+            <Input name="password" type="password" placeholder="000xxxx0000" size="md" />
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">
-            <LinkButton name="ログインする" path="/culture/confirm"></LinkButton>
+            <Button type="submit" colorScheme="teal" size="md" w="100%" disabled={loading}>
+              <span>{loading ? '登録しています...' : '登録する'}</span>
+            </Button>
           </Box>
           <Box justifyContent="flex-end">
             <Center>
@@ -56,7 +85,7 @@ const Signin = () => {
       <Center mb="100px">
         <Link href="/auth/signup" color="orange.500">アカウントをお持ちでない方はこちら</Link>
       </Center>
-    </div>
+    </form>
   );
 };
 
