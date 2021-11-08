@@ -40,10 +40,9 @@ const IndexPage = () => {
           <Flex direction={{ base: "column", md: "row" }} >
             <Box w={{ base: "100%", md: "45%" }} py={{ base: "4", md: "0" }} >
               <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<SearchIcon color="gray.300" />}
-                />
+                <InputLeftElement pointerEvents="none">
+                  <SearchIcon color="gray.300" />
+                </InputLeftElement>
                 <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} />
               </InputGroup>
             </Box>
@@ -65,7 +64,7 @@ const IndexPage = () => {
           <section>
             <Stack>
               {[1, 2].map(item =>
-                <article>
+                <article key={item}>
                   <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
                     <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Image src="/brothers.jpg" alt="シェアカルアイテムの画像です"></Image>

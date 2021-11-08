@@ -5,9 +5,12 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import type { VFC } from 'react';
 import { LinkButton } from "@/components/utils/LinkButton";
 
-export const ContentHeader = (props) => {
+type Props = {contentName: string, useNew: string, newPath: string};
+
+export const ContentHeader: VFC<Props> = (props) => {
   const {contentName, useNew, newPath} = props;
   const bg = useColorModeValue("white", "gray.700");
   if (useNew == "true") {

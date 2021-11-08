@@ -32,7 +32,7 @@ export const SideNav = () => {
             bg = hoverGround;
           }
           return (
-            <Link href={page.href} _hover={{ textDecoration: "none" }}>
+            <Link key={page.href} href={page.href} _hover={{ textDecoration: "none" }}>
               <ListItem p="16px" boxShadow="base" bg={bg} _hover={{ bg: hoverGround, cursor: "pointer" }}>
                 <ListIcon as={page.icon} h={5} w={6} color={iconColor} />{page.name}
               </ListItem>

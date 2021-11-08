@@ -70,11 +70,11 @@ const CulturesPage = () => {
         <Tbody>
           {[1, 2, 3].map(culture => {
             return (
-              <Tr>
+              <Tr key={culture}>
                 <Td><Checkbox /></Td>
                 <Td>
                   <Stack spacing={1}>
-                    <Image src="/brothers.jpg"></Image>
+                    <Image src="/brothers.jpg" alt="カルチャーイメージ"></Image>
                     <Menu>
                       <MenuButton transition="all 0.2s" border="1px solid" borderColor={borderColor} _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
                         公開 <ChevronDownIcon />

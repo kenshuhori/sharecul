@@ -67,10 +67,10 @@ const UsersPage = () => {
         <Tbody>
           {[1, 2, 3].map(culture => {
             return (
-              <Tr>
+              <Tr key={culture}>
                 <Td><Checkbox /></Td>
                 <Td>
-                  <Image src="/brothers.jpg" w={16} h={16} borderRadius="50%" />
+                  <Image src="/brothers.jpg" w={16} h={16} borderRadius="50%" alt="ユーザーイメージ" />
                 </Td>
                 <Td>
                   <Stack>
