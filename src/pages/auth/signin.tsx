@@ -12,6 +12,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { supabase } from '@/utils/supabase';
 import { useSession } from '@/utils/useSession';
 
@@ -19,14 +20,16 @@ export default function AuthSigninPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
   const { session, setSession } = useSession();
+  const { replace } = useRouter();
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    setSession(session);
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-    console.log(session)
     if (session) {
-      location.href = '/mypage/account';
+      replace('/mypage/account');
     }
   }, []);
 
@@ -37,6 +40,9 @@ export default function AuthSigninPage() {
       const password = event.target.password.value;
       const { error } = await supabase.auth.signIn({ email, password });
       if (error) throw error;
+      if (supabase.auth.session()) {
+        replace('/mypage/account');
+      }
     } catch (error) {
       console.log(error.error_description || error.message);
     } finally {
@@ -67,7 +73,7 @@ export default function AuthSigninPage() {
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">パスワード</Text>
-            <Input name="password" type="password" placeholder="000xxxx0000" size="md" />
+            <Input name="password" type="password" placeholder="******" size="md" />
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">
