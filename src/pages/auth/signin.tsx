@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/utils/supabase';
 import { useSession } from '@/utils/useSession';
 
-const Signin = () => {
+export default function AuthSigninPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
   const { session, setSession } = useSession();
@@ -88,5 +88,3 @@ const Signin = () => {
     </form>
   );
 };
-
-export default Signin;

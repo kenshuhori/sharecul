@@ -13,7 +13,7 @@ import {
 import { useState, useEffect } from 'react';
 import { supabase } from '@/utils/supabase';
 
-const IndexPage = () => {
+export function AuthIndexPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -87,5 +87,3 @@ const IndexPage = () => {
     </form>
   );
 };
-
-export default IndexPage;

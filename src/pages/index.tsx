@@ -18,7 +18,7 @@ import {
 import { LinkButton } from "@/components/utils/LinkButton";
 import { SearchIcon } from '@chakra-ui/icons';
 
-const IndexPage = () => {
+export default function IndexPage() {
   const articleBackground = useColorModeValue("red.50", "gray.600");
   return (
     <div>
@@ -98,5 +98,3 @@ const IndexPage = () => {
     </div>
   );
 };
-
-export default IndexPage;

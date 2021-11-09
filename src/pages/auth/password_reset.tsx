@@ -4,7 +4,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-const IndexPage = () => {
+export default function AuthPasswordResetPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   return (
     <Container background={formBackground} >
@@ -12,5 +12,3 @@ const IndexPage = () => {
     </Container>
   );
 };
-
-export default IndexPage;

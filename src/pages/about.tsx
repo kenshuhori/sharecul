@@ -6,7 +6,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-const IndexPage = () => {
+export default function AboutPage() {
   return (
     <div>
       <Stack>
@@ -33,5 +33,3 @@ const IndexPage = () => {
     </div>
   );
 };
-
-export default IndexPage;

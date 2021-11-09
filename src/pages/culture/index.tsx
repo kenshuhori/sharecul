@@ -21,7 +21,7 @@ import {
 import { LinkButton } from "@/components/utils/LinkButton";
 import { SearchIcon } from '@chakra-ui/icons';
 
-const IndexPage = () => {
+export default function CultureIndexPage() {
   return (
     <div>
       <Stack>
@@ -90,5 +90,3 @@ const IndexPage = () => {
     </div>
   );
 };
-
-export default IndexPage;

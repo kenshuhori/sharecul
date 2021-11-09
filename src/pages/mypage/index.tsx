@@ -1,14 +1,11 @@
 import {
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
 
-const MyPage = () => {
+export default function MyPageIndexPage() {
   return (
     <div>
       <Text>マイページ</Text>
     </div>
   );
 };
-
-export default MyPage;
