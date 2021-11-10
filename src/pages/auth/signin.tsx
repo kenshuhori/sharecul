@@ -13,34 +13,23 @@ import {
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { supabase } from '@/utils/supabase';
 import { useSession } from '@/hooks/useSession';
 
 export default function AuthSigninPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
-  const { session, setSession } = useSession();
+  const { session, signIn } = useSession();
   const { replace } = useRouter();
 
-  useEffect(() => {
-    const session = supabase.auth.session();
-    setSession(session);
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-    if (session) {
-      replace('/mypage/account');
-    }
-  }, []);
+  if (session) {
+    replace('/mypage/account');
+  }
 
   const handleSubmit = async (event) => {
     try {
       setLoading(true);
-      const email = event.target.email.value;
-      const password = event.target.password.value;
-      const { error } = await supabase.auth.signIn({ email, password });
-      if (error) throw error;
-      if (supabase.auth.session()) {
+      const { session } = await signIn(event.target.email.value, event.target.password.value)
+      if (session) {
         replace('/mypage/account');
       }
     } catch (error) {

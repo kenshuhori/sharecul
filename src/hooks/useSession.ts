@@ -13,7 +13,19 @@ const sessionState = atom({
 export const useSession = () => {
   const [session, setSession] = useRecoilState(sessionState);
   useEffect(() => {
-    setSession(supabase.auth.session());
+    let session = supabase.auth.session()
+    setSession(session);
   });
-  return {session, setSession};
+
+  async function signIn(email, password) {
+    const { session, error } = await supabase.auth.signIn({ email, password });
+    if (error) throw error;
+    setSession(session);
+    return { session }
+  }
+
+  async function signOut() {
+    supabase.auth.signOut();
+  }
+  return {session, signIn, signOut};
 };
