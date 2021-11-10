@@ -14,7 +14,7 @@ import {
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '@/utils/supabase';
-import { useSession } from '@/utils/useSession';
+import { useSession } from '@/hooks/useSession';
 
 export default function AuthSigninPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
@@ -44,7 +44,7 @@ export default function AuthSigninPage() {
         replace('/mypage/account');
       }
     } catch (error) {
-      console.log(error.error_description || error.message);
+      alert(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
