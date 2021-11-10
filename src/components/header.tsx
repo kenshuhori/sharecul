@@ -71,7 +71,7 @@ export const Header = () => {
                       <b>マイページ</b> <ChevronDownIcon />
                     </MenuButton>
                     <MenuList>
-                      <Link href="/mypage" _hover={{ textDecoration: "none" }}><MenuItem>アカウント</MenuItem></Link>
+                      <Link href="/mypage/account" _hover={{ textDecoration: "none" }}><MenuItem>アカウント</MenuItem></Link>
                       <MenuItem onClick={handleSignOut}>ログアウト</MenuItem>
                     </MenuList>
                   </Menu>

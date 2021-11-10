@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/utils/supabase';
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Divider,
+  Input,
+  Stack,
+  Spacer,
+  Text,
+  useColorModeValue,
+  useToast,
+} from '@chakra-ui/react';
 
 export default function MypageAccountPage() {
   const [loading, setLoading] = useState(true);
@@ -7,6 +20,8 @@ export default function MypageAccountPage() {
   const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
   const [user, setUser] = useState(null);
+  const formBackground = useColorModeValue("orange.50", "gray.700");
+  const toast = useToast();
 
   useEffect(() => {
     getProfile();
@@ -67,45 +82,31 @@ export default function MypageAccountPage() {
   }
 
   return (
-    <div className="form-widget">
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={user} disabled />
-      </div>
-      <div>
-        <label htmlFor="username">Name</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <button
-          className="button block primary"
-          onClick={() => updateProfile({ username, website, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
-
-      <div>
-        <button className="button block" onClick={() => supabase.auth.signOut()}>
-          Sign Out
-        </button>
-      </div>
-    </div>
+    <Container background={formBackground} >
+      <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" py="50px">
+        <Box>
+          <Center>
+            <Text fontSize="2xl"><strong>アカウント</strong></Text>
+          </Center>
+          <Center>
+            <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
+          </Center>
+        </Box>
+        <Box>
+          <Text fontSize="sm" mb="6px">お名前</Text>
+          <Input type="text" name="name" placeholder="田中 太郎" value={username} required size="md" />
+        </Box>
+        <Box>
+          <Text fontSize="sm" mb="6px">メールアドレス</Text>
+          <Input type="email" name="email" placeholder="sharecul@example.com" required size="md" />
+        </Box>
+        <Spacer />
+        <Box justifyContent="flex-end">
+          <Button type="submit" colorScheme="teal" size="md" w="100%" onClick={() => updateProfile({ username, website, avatar_url })} disabled={loading}>
+            <span>{loading ? '更新しています...' : '更新する'}</span>
+          </Button>
+        </Box>
+      </Stack>
+    </Container>
   );
 }
