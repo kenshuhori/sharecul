@@ -15,11 +15,17 @@ import {
   useColorModeValue
 } from "@chakra-ui/react";
 import { ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
+import { useSession } from '@/hooks/useSession';
 
 export const Header = () => {
+  const { session, signOut } = useSession();
   const { colorMode, toggleColorMode } = useColorMode();
   const background = useColorModeValue("white", "gray.700");
-  const isAuth = false;
+
+  const handleSignOut = async () => {
+    await signOut("/");
+  }
+
   return (
     <header>
       <Flex pos="fixed" w="100%" h="90px" py={4} px="5%" bg={background} boxShadow="base">
@@ -58,11 +64,17 @@ export const Header = () => {
         <Box p="2">
           {
             (() => {
-              if (isAuth) {
+              if (session) {
                 return (
-                  <Link href="/mypage" _hover={{ textDecoration: "none" }}>
-                    <Button colorScheme="teal" size="md"><b>マイページ</b></Button>
-                  </Link>
+                  <Menu>
+                    <MenuButton px={4} py={2} as={Button} colorScheme="teal" transition="all 0.2s" borderRadius="md">
+                      <b>マイページ</b> <ChevronDownIcon />
+                    </MenuButton>
+                    <MenuList>
+                      <Link href="/mypage" _hover={{ textDecoration: "none" }}><MenuItem>アカウント</MenuItem></Link>
+                      <MenuItem onClick={handleSignOut}>ログアウト</MenuItem>
+                    </MenuList>
+                  </Menu>
                 );
               } else {
                 return (
