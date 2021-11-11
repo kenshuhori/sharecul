@@ -5,49 +5,48 @@ import {
   Container,
   Divider,
   Input,
+  InputGroup,
+  InputRightElement,
   Stack,
   Spacer,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabase';
+import { useRouter } from 'next/router';
+import { useSession } from '@/hooks/useSession';
+import { InputChecker } from '@/components/utils/InputChecker';
 
 export default function AuthSignupPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
-  const [session, setSession] = useState(null);
+  const { replace } = useRouter();
+  const { signUp } = useSession();
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password_confirm, setPasswordConfirm] = useState('');
 
-  useEffect(() => {
-    setSession(supabase.auth.session());
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-    if (session) {
-      location.href = '/mypage/account';
-    }
-  }, []);
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
     try {
       setLoading(true);
-      const email = event.target.email.value;
-      const password = event.target.password.value;
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) throw error;
+      const { session } = await signUp(email, password);
+      if (session) {
+        replace('/mypage/account');
+      }
     } catch (error) {
-      console.log(error);
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
   };
 
+
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit(e);
+        handleSubmit();
       }}
     >
       <Container background={formBackground} >
@@ -61,20 +60,31 @@ export default function AuthSignupPage() {
             </Center>
           </Box>
           <Box>
-            <Text fontSize="sm" mb="6px">お名前</Text>
-            <Input type="text" name="name" placeholder="田中 太郎" required size="md" />
-          </Box>
-          <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
-            <Input type="email" name="email" placeholder="sharecul@example.com" required size="md" />
+            <InputGroup>
+              <Input type="email" name="email" placeholder="sharecul@example.com" value={email} onChange={(e) => {setEmail(e.target.value)}} required size="md" />
+              <InputRightElement>
+                <InputChecker type="email" value={ {email: email} }/>
+              </InputRightElement>
+            </InputGroup>
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">パスワード</Text>
-            <Input type="password" name="password" placeholder="半角英数字6文字以上" required size="md" />
+            <InputGroup>
+              <Input type="password" name="password" placeholder="半角英数字6文字以上" value={password} onChange={(e) => {setPassword(e.target.value)}} required size="md" />
+              <InputRightElement>
+                <InputChecker type="password" value={ {password: password} }/>
+              </InputRightElement>
+            </InputGroup>
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">パスワード確認用</Text>
-            <Input type="password" placeholder="半角英数字6文字以上" required size="md" />
+            <InputGroup>
+              <Input type="password" placeholder="半角英数字6文字以上" value={password_confirm} onChange={(e) => {setPasswordConfirm(e.target.value)}} required size="md" />
+              <InputRightElement>
+                <InputChecker type="password_confirm" value={ {password: password, password_confirm: password_confirm} }/>
+              </InputRightElement>
+            </InputGroup>
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">

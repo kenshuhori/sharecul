@@ -37,21 +37,21 @@ const IndexPage = () => {
           <InputGroup>
             <Input name="email" placeholder="sharecul@example.com" varient="Filled" mb={3} type="email" value={email} onChange={(e) => {setEmail(e.target.value);}} />
             <InputRightElement>
-              <InputChecker type="email" value={email}/>
+              <InputChecker type="email" value={{ email: email }}/>
             </InputRightElement>
           </InputGroup>
           <Text fontSize={12}>パスワード</Text>
           <InputGroup>
             <Input name="password" placeholder="******" varient="Fileed" mb={6} type="password" value={password} onChange={(e) => {setPassword(e.target.value);}} />
             <InputRightElement>
-              <InputChecker type="password" value={password}/>
+              <InputChecker type="password" value={{ password: password }}/>
             </InputRightElement>
           </InputGroup>
           <Text fontSize={12}>パスワード確認用</Text>
           <InputGroup>
             <Input placeholder="******" varient="Fileed" mb={6} type="password" value={password_confirm} onChange={(e) => {setPasswordConfirm(e.target.value);}} />
             <InputRightElement>
-              <InputChecker type="password_confirm" value={!!password_confirm && password == password_confirm ? 'true' : 'false'}/>
+              <InputChecker type="password_confirm" value={{ password: password, password_confirm: password_confirm }}/>
             </InputRightElement>
           </InputGroup>
           <Button type="submit" colorScheme="teal" mb={4}>登録</Button>
