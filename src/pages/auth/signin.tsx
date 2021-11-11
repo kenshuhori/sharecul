@@ -67,12 +67,12 @@ export default function AuthSigninPage() {
           <Spacer />
           <Box justifyContent="flex-end">
             <Button type="submit" colorScheme="teal" size="md" w="100%" disabled={loading}>
-              <span>{loading ? '登録しています...' : '登録する'}</span>
+              <span>{loading ? 'ログインしています...' : 'ログイン'}</span>
             </Button>
           </Box>
           <Box justifyContent="flex-end">
             <Center>
-              <Link href="/signin/password_reset" color="orange.500">パスワードをお忘れの方はこちら</Link>
+              <Link href="/auth/password_reset" color="orange.500">パスワードをお忘れの方はこちら</Link>
             </Center>
           </Box>
         </Stack>

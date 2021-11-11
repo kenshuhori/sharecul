@@ -19,6 +19,7 @@ export default function MypageAccountPage() {
   const [username, setUsername] = useState(null);
   const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
+  const [email, setEmail] = useState(null);
   const [user, setUser] = useState(null);
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const toast = useToast();
@@ -46,6 +47,7 @@ export default function MypageAccountPage() {
         setUsername(data.username);
         setWebsite(data.website);
         setAvatarUrl(data.avatar_url);
+        setEmail(user.email)
       }
     } catch (error) {
       alert(error.message);
@@ -98,7 +100,7 @@ export default function MypageAccountPage() {
         </Box>
         <Box>
           <Text fontSize="sm" mb="6px">メールアドレス</Text>
-          <Input type="email" name="email" placeholder="sharecul@example.com" required size="md" />
+          <Input type="email" name="email" placeholder="sharecul@example.com" value={email} required size="md" />
         </Box>
         <Spacer />
         <Box justifyContent="flex-end">
