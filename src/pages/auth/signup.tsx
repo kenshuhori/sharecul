@@ -37,10 +37,8 @@ export default function AuthSignupPage() {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const { session } = await signUp(email, password);
-      if (session) {
-        replace('/mypage/account');
-      }
+      await signUp(email, password);
+      messageOnToast(email + " 宛にメールを送信しました！", "success");
     } catch (error: any) {
       messageOnToast(error.error_description || error.message, "error");
     } finally {

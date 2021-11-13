@@ -38,5 +38,9 @@ export const useSession = () => {
     supabase.auth.signOut();
     replace(redirect_path);
   }
-  return {session, signIn, signUp, signOut};
+
+  async function deleteUser() {
+    console.log("hogehoge");
+  }
+  return {session, signIn, signUp, signOut, deleteUser};
 };

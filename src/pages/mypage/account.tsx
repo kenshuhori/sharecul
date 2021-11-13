@@ -7,6 +7,7 @@ import {
   Container,
   Divider,
   Input,
+  Link,
   Stack,
   Spacer,
   Text,
@@ -23,7 +24,7 @@ export default function MypageAccountPage() {
   const [username, setUsername] = useState('');
   const [avatar_url, setAvatarUrl] = useState('');
   const [email, setEmail] = useState('');
-  const { session } = useSession();
+  const { session, deleteUser } = useSession();
   const { replace } = useRouter();
   const { messageOnToast } = useToast();
 
@@ -52,10 +53,10 @@ export default function MypageAccountPage() {
         throw error;
       }
 
+      setEmail(user.email);
       if (data) {
         setUsername(data.username);
         setAvatarUrl(data.avatar_url);
-        setEmail(user.email);
       }
     } catch (error: any) {
       alert(error.message);
@@ -98,42 +99,47 @@ export default function MypageAccountPage() {
   }
 
   return (
-    <Container background={formBackground} >
-      <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" py="50px">
-        <Box>
-          <Center>
-            <Text fontSize="2xl"><strong>アカウント</strong></Text>
-          </Center>
-          <Center>
-            <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
-          </Center>
-        </Box>
-        <Box>
-          <Center>
-            <AvatarProfile
-              url={avatar_url}
-              onUpload={(url) => {
-                setAvatarUrl(url);
-                updateProfile(username, url);
-              }}
-            />
-          </Center>
-        </Box>
-        <Box>
-          <Text fontSize="sm" mb="6px">お名前</Text>
-          <Input type="text" name="name" placeholder="田中 太郎" value={username} required size="md" />
-        </Box>
-        <Box>
-          <Text fontSize="sm" mb="6px">メールアドレス</Text>
-          <Input type="email" name="email" placeholder="sharecul@example.com" value={email} required size="md" />
-        </Box>
-        <Spacer />
-        <Box justifyContent="flex-end">
-          <Button type="submit" colorScheme="teal" size="md" w="100%" onClick={() => updateProfile(username)} disabled={loading}>
-            <span>{loading ? '更新しています...' : '更新する'}</span>
-          </Button>
-        </Box>
-      </Stack>
-    </Container>
+    <>
+      <Container background={formBackground} >
+        <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" py="50px">
+          <Box>
+            <Center>
+              <Text fontSize="2xl"><strong>アカウント</strong></Text>
+            </Center>
+            <Center>
+              <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
+            </Center>
+          </Box>
+          <Box>
+            <Center>
+              <AvatarProfile
+                url={avatar_url}
+                onUpload={(url) => {
+                  setAvatarUrl(url);
+                  updateProfile(username, url);
+                }}
+              />
+            </Center>
+          </Box>
+          <Box>
+            <Text fontSize="sm" mb="6px">お名前</Text>
+            <Input type="text" name="name" placeholder="田中 太郎" value={username} required size="md" />
+          </Box>
+          <Box>
+            <Text fontSize="sm" mb="6px">メールアドレス</Text>
+            <Input type="email" name="email" placeholder="sharecul@example.com" value={email} required size="md" />
+          </Box>
+          <Spacer />
+          <Box justifyContent="flex-end">
+            <Button type="submit" colorScheme="teal" size="md" w="100%" onClick={() => updateProfile(username)} disabled={loading}>
+              <span>{loading ? '更新しています...' : '更新する'}</span>
+            </Button>
+          </Box>
+        </Stack>
+      </Container>
+      <Center mb="100px">
+        <Link onClick={deleteUser} color="orange.500">アカウントを削除する</Link>
+      </Center>
+    </>
   );
 }
