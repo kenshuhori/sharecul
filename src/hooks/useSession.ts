@@ -18,7 +18,7 @@ export const useSession = () => {
     let session: object;
     session = supabase.auth.session() || {};
     setSession(session);
-  });
+  }, []);
 
   async function signUp(email: string, password: string) {
     const { session, error } = await supabase.auth.signIn({ email, password });
