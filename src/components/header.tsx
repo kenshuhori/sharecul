@@ -16,15 +16,21 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { useSession } from '@/hooks/useSession';
+import { useEffect, useState } from 'react';
 
 export const Header = () => {
   const { session, signOut } = useSession();
   const { colorMode, toggleColorMode } = useColorMode();
   const background = useColorModeValue("white", "gray.700");
+  const [isRendered, setIsRendered] = useState(false);
+
+  useEffect(() => {
+    setIsRendered(true);
+  }, []);
 
   const handleSignOut = async () => {
     await signOut("/");
-  }
+  };
 
   return (
     <header>
@@ -43,7 +49,8 @@ export const Header = () => {
           <Link href="/about"><b>About</b></Link>
         </Box>
         <Box p="2">
-          <Menu>
+          { isRendered && (
+            <Menu>
             <MenuButton px={4} py={2} transition="all 0.2s" borderRadius="md" _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
               <b>Category</b> <ChevronDownIcon />
             </MenuButton>
@@ -52,6 +59,7 @@ export const Header = () => {
               <MenuItem>モノのシェア</MenuItem>
             </MenuList>
           </Menu>
+          ) }
         </Box>
         <Box p="3" d={{ base: "none", md: "block" }}>
           <IconButton
