@@ -56,17 +56,22 @@ export default function MypageAccountPage() {
     }
   }
 
-  async function updateProfile(username: string, avatar_url: string) {
+  async function updateProfile(username: string, avatar_url?: string) {
     try {
       setLoading(true);
       const user = supabase.auth.user() || unAuthorizedUser;
 
-      const updates = {
-        id: user.id,
-        username,
-        avatar_url,
-        updated_at: new Date(),
-      };
+      const updates = avatar_url ?
+        {
+          id: user.id,
+          username,
+          avatar_url,
+          updated_at: new Date(),
+        } : {
+          id: user.id,
+          username,
+          updated_at: new Date(),
+        };
 
       const { error } = await supabase.from('profiles').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
