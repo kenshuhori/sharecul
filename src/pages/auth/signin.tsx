@@ -21,15 +21,17 @@ export default function AuthSigninPage() {
   const { session, signIn } = useSession();
   const { replace } = useRouter();
 
-  if (session) {
-    replace('/mypage/account');
-  }
+  useEffect(() => {
+    if (Object.keys(session).length) {
+      replace('/mypage/account');
+    }
+  }, []);
 
   const handleSubmit = async (event: any) => {
     try {
       setLoading(true);
       const { session } = await signIn(event.target.email.value, event.target.password.value);
-      if (session) {
+      if (Object.keys(session).length) {
         replace('/mypage/account');
       }
     } catch (error: any) {
@@ -58,11 +60,11 @@ export default function AuthSigninPage() {
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
-            <Input name="email" type="email" placeholder="sharecul@example.com" size="md" />
+            <Input name="email" type="email" placeholder="sharecul@example.com" size="md" required />
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">パスワード</Text>
-            <Input name="password" type="password" placeholder="******" size="md" />
+            <Input name="password" type="password" placeholder="******" size="md" required />
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">
