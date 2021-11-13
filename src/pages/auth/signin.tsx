@@ -25,14 +25,14 @@ export default function AuthSigninPage() {
     replace('/mypage/account');
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     try {
       setLoading(true);
       const { session } = await signIn(event.target.email.value, event.target.password.value);
       if (session) {
         replace('/mypage/account');
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
@@ -41,7 +41,7 @@ export default function AuthSigninPage() {
 
   return (
     <form
-      onSubmit={(e: React.FormEvent) => {
+      onSubmit={(e) => {
         e.preventDefault();
         handleSubmit(e);
       }}

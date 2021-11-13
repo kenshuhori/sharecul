@@ -8,12 +8,13 @@ import {
 import type { VFC } from 'react';
 import { LinkButton } from "@/components/utils/LinkButton";
 
-type Props = {contentName: string, useNew: string, newPath: string};
+type Props = {contentName: string, useNew: boolean, newPath?: string};
 
 export const ContentHeader: VFC<Props> = (props) => {
-  const {contentName, useNew, newPath} = props;
+  let {contentName, useNew, newPath} = props;
+  if (!newPath) { newPath = ''; }
   const bg = useColorModeValue("white", "gray.700");
-  if (useNew == "true") {
+  if (useNew == true) {
     return (
       <Flex w="100%" p="6px" bg={bg}>
         <Box p="4px" fontSize="xl"><b>{contentName}</b></Box>

@@ -4,7 +4,7 @@ import api from '@/utils/api';
 const SettingsPage = () => {
   return (
     <>
-      <ContentHeader contentName="設定" useNew="false"></ContentHeader>
+      <ContentHeader contentName="設定" useNew={false}></ContentHeader>
     </>
   );
 };

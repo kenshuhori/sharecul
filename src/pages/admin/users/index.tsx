@@ -32,7 +32,7 @@ const UsersPage = () => {
   const tableColor = useColorModeValue("black", "white");
   return (
     <>
-      <ContentHeader contentName="ユーザー" useNew="true" newPath="/admin/users/new"></ContentHeader>
+      <ContentHeader contentName="ユーザー" useNew={true} newPath="/admin/users/new"></ContentHeader>
       <Flex mt="12px" bg={bg} fontSize="sm">
         <Box p="11px">フィルター</Box>
         <Box p="6px">

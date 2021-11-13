@@ -32,7 +32,7 @@ const CulturesPage = () => {
   const tableColor = useColorModeValue("black", "white");
   return (
     <>
-      <ContentHeader contentName="カルチャー" useNew="true" newPath="/admin/cultures/new"></ContentHeader>
+      <ContentHeader contentName="カルチャー" useNew={true} newPath="/admin/cultures/new"></ContentHeader>
       <Flex mt="12px" bg={bg} fontSize="sm">
         <Box p="11px">フィルター</Box>
         <Box p="6px">

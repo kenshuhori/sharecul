@@ -33,14 +33,12 @@ export default function AuthSignupPage() {
       if (session) {
         replace('/mypage/account');
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
   };
-
-
 
   return (
     <form
@@ -62,7 +60,7 @@ export default function AuthSignupPage() {
           <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
             <InputGroup>
-              <Input type="email" name="email" placeholder="sharecul@example.com" value={email} onChange={(e) => {setEmail(e.target.value)}} required size="md" />
+              <Input type="email" name="email" placeholder="sharecul@example.com" value={email} onChange={(e) => {setEmail(e.target.value);}} required size="md" />
               <InputRightElement>
                 <InputChecker type="email" value={ {email: email} }/>
               </InputRightElement>
@@ -71,7 +69,7 @@ export default function AuthSignupPage() {
           <Box>
             <Text fontSize="sm" mb="6px">パスワード</Text>
             <InputGroup>
-              <Input type="password" name="password" placeholder="半角英数字6文字以上" value={password} onChange={(e) => {setPassword(e.target.value)}} required size="md" />
+              <Input type="password" name="password" placeholder="半角英数字6文字以上" value={password} onChange={(e) => {setPassword(e.target.value);}} required size="md" />
               <InputRightElement>
                 <InputChecker type="password" value={ {password: password} }/>
               </InputRightElement>
@@ -80,7 +78,7 @@ export default function AuthSignupPage() {
           <Box>
             <Text fontSize="sm" mb="6px">パスワード確認用</Text>
             <InputGroup>
-              <Input type="password" placeholder="半角英数字6文字以上" value={password_confirm} onChange={(e) => {setPasswordConfirm(e.target.value)}} required size="md" />
+              <Input type="password" placeholder="半角英数字6文字以上" value={password_confirm} onChange={(e) => {setPasswordConfirm(e.target.value);}} required size="md" />
               <InputRightElement>
                 <InputChecker type="password_confirm" value={ {password: password, password_confirm: password_confirm} }/>
               </InputRightElement>

@@ -8,34 +8,35 @@ import {
 
 const sessionState = atom({
   key: 'session',
-  default: null,
+  default: {},
 });
 
 export const useSession = () => {
   const { replace } = useRouter();
   const [session, setSession] = useRecoilState(sessionState);
   useEffect(() => {
-    let session = supabase.auth.session()
+    let session: object;
+    session = supabase.auth.session() || {};
     setSession(session);
   });
 
   async function signUp(email: string, password: string) {
     const { session, error } = await supabase.auth.signIn({ email, password });
     if (error) throw error;
-    setSession(session);
-    return { session }
+    if (session) setSession(session);
+    return { session };
   }
 
   async function signIn(email: string, password: string) {
     const { session, error } = await supabase.auth.signIn({ email, password });
     if (error) throw error;
-    setSession(session);
-    return { session }
+    if (session) setSession(session);
+    return { session };
   }
 
   async function signOut(redirect_path: string) {
     supabase.auth.signOut();
     replace(redirect_path);
   }
-  return {session, signIn, signOut};
+  return {session, signIn, signUp, signOut};
 };

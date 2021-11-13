@@ -1,10 +1,20 @@
 import type { VFC } from 'react';
 import { CheckIcon } from '@chakra-ui/icons';
 
-type Props = {type: string, value: object};
+type Props = {type: string, value: Value};
+interface Value {
+  text?: string,
+  email?: string,
+  password?: string,
+  password_confirm?: string
+}
 
 export const InputChecker: VFC<Props> = (props) => {
   const {type, value} = props;
+  if (!value['text']) { value['text'] = ''; };
+  if (!value['email']) { value['email'] = ''; };
+  if (!value['password']) { value['password'] = ''; };
+  if (!value['password_confirm']) { value['password_confirm'] = ''; };
   let enable = false;
   if (type === 'text') {
     enable = !!value['text'];
