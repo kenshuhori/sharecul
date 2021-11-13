@@ -18,18 +18,20 @@ const IndexPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirm, setPasswordConfirm] = useState("");
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (event: any) => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const res = await supabase.auth.signUp({
       email,
       password,
     });
-    console.log(res);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      handleSubmit(e);
+      }
+    }>
       <Flex alignItems="center" justifyContent="center" m={8}>
         <Flex direction="column" background={formBackground} p={12}>
           <Heading mb={6}>アカウント登録</Heading>
