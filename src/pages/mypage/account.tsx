@@ -13,18 +13,26 @@ import {
   useColorModeValue,
   useToast,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useSession } from '@/hooks/useSession';
 import AvatarProfile from '@/components/utils/AvatarProfile';
 
 export default function MypageAccountPage() {
+  const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState('');
   const [avatar_url, setAvatarUrl] = useState('');
   const [email, setEmail] = useState('');
-  const formBackground = useColorModeValue("orange.50", "gray.700");
+  const { session } = useSession();
+  const { replace } = useRouter();
   const toast = useToast();
 
   useEffect(() => {
-    getProfile();
+    if (!Object.keys(session).length) {
+      replace('/auth/signin');
+    } else {
+      getProfile();
+    }
   }, []);
 
   const unAuthorizedUser = { id: 0 };

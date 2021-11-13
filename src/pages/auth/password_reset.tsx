@@ -12,10 +12,21 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useSession } from '@/hooks/useSession';
 
 export default function AuthPasswordResetPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
+  const { session } = useSession();
+  const { replace } = useRouter();
+
+  useEffect(() => {
+    if (Object.keys(session).length) {
+      replace('/mypage/account');
+    }
+  }, []);
+
   return (
     <form
       onSubmit={(e: React.FormEvent) => {

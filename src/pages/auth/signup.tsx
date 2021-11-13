@@ -20,11 +20,17 @@ import { InputChecker } from '@/components/utils/InputChecker';
 export default function AuthSignupPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const { replace } = useRouter();
-  const { signUp } = useSession();
+  const { session, signUp } = useSession();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirm, setPasswordConfirm] = useState('');
+
+  useEffect(() => {
+    if (Object.keys(session).length) {
+      replace('/mypage/account');
+    }
+  }, []);
 
   const handleSubmit = async () => {
     try {
