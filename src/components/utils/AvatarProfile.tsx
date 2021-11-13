@@ -1,10 +1,6 @@
 import {
   Avatar,
   AvatarBadge,
-  AvatarGroup,
-  Button,
-  FormControl,
-  FormLabel,
   IconButton,
   Input
 } from "@chakra-ui/react";
@@ -70,7 +66,7 @@ export default function AvatarProfile({ url, onUpload }) {
   return (
     <div>
       <Avatar size="xl" src={avatarUrl} alt="Avatar">
-        <AvatarBadge boxSize="0">
+        <AvatarBadge boxSize="40px" border="none">
           <Input id="avatar-input" type="file" accept="image/*" onChange={uploadAvatar} disabled={uploading} visibility="hidden" position="absolute" />
           <IconButton colorScheme="teal" aria-label="Change Avatar" onClick={clickFileInput} borderRadius="50%">
             <AttachmentIcon />

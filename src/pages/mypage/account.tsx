@@ -35,6 +35,15 @@ export default function MypageAccountPage() {
     }
   }, []);
 
+  function messageOnToast(message, status) {
+    toast({
+      title: message,
+      status: status,
+      position: "top",
+      isClosable: true,
+    });
+  };
+
   const unAuthorizedUser = { id: 0 };
 
   async function getProfile() {
@@ -87,9 +96,11 @@ export default function MypageAccountPage() {
 
       if (error) {
         throw error;
+      } else {
+        messageOnToast("更新しました！", "success");
       }
     } catch (error: any) {
-      alert(error.message);
+      messageOnToast(error.message, "error");
     } finally {
       setLoading(false);
     }
