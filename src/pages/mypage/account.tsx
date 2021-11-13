@@ -16,11 +16,8 @@ import {
 
 export default function MypageAccountPage() {
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState(null);
-  const [website, setWebsite] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const toast = useToast();
 
@@ -28,10 +25,12 @@ export default function MypageAccountPage() {
     getProfile();
   }, []);
 
+  const unAuthorizedUser = { id: 0 };
+
   async function getProfile() {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
+      const user: any = supabase.auth.user();
 
       const { data, error, status } = await supabase
         .from('profiles')
@@ -45,27 +44,23 @@ export default function MypageAccountPage() {
 
       if (data) {
         setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
-        setEmail(user.email)
+        setEmail(user.email);
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     } finally {
       setLoading(false);
     }
   }
 
-  async function updateProfile({ username, website, avatar_url }) {
+  async function updateProfile(username: string) {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
+      const user = supabase.auth.user() || unAuthorizedUser;
 
       const updates = {
         id: user.id,
         username,
-        website,
-        avatar_url,
         updated_at: new Date(),
       };
 
@@ -76,7 +71,7 @@ export default function MypageAccountPage() {
       if (error) {
         throw error;
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     } finally {
       setLoading(false);
@@ -104,7 +99,7 @@ export default function MypageAccountPage() {
         </Box>
         <Spacer />
         <Box justifyContent="flex-end">
-          <Button type="submit" colorScheme="teal" size="md" w="100%" onClick={() => updateProfile({ username, website, avatar_url })} disabled={loading}>
+          <Button type="submit" colorScheme="teal" size="md" w="100%" onClick={() => updateProfile(username)} disabled={loading}>
             <span>{loading ? '更新しています...' : '更新する'}</span>
           </Button>
         </Box>
