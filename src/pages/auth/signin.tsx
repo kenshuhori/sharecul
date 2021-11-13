@@ -30,7 +30,7 @@ export default function AuthSigninPage() {
   const handleSubmit = async (event: any) => {
     try {
       setLoading(true);
-      const { session } = await signIn(event.target.email.value, event.target.password.value);
+      const session　= await signIn(event.target.email.value, event.target.password.value);
       if (Object.keys(session).length) {
         replace('/mypage/account');
       }
