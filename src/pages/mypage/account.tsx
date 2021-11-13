@@ -13,10 +13,12 @@ import {
   useColorModeValue,
   useToast,
 } from '@chakra-ui/react';
+import AvatarProfile from '@/components/utils/AvatarProfile';
 
 export default function MypageAccountPage() {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState('');
+  const [avatar_url, setAvatarUrl] = useState('');
   const [email, setEmail] = useState('');
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const toast = useToast();
@@ -34,7 +36,7 @@ export default function MypageAccountPage() {
 
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, avatar_url`)
         .eq('id', user.id)
         .single();
 
@@ -44,6 +46,7 @@ export default function MypageAccountPage() {
 
       if (data) {
         setUsername(data.username);
+        setAvatarUrl(data.avatar_url);
         setEmail(user.email);
       }
     } catch (error: any) {
@@ -53,7 +56,7 @@ export default function MypageAccountPage() {
     }
   }
 
-  async function updateProfile(username: string) {
+  async function updateProfile(username: string, avatar_url: string) {
     try {
       setLoading(true);
       const user = supabase.auth.user() || unAuthorizedUser;
@@ -61,6 +64,7 @@ export default function MypageAccountPage() {
       const updates = {
         id: user.id,
         username,
+        avatar_url,
         updated_at: new Date(),
       };
 
@@ -87,6 +91,17 @@ export default function MypageAccountPage() {
           </Center>
           <Center>
             <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
+          </Center>
+        </Box>
+        <Box>
+          <Center>
+            <AvatarProfile
+              url={avatar_url}
+              onUpload={(url) => {
+                setAvatarUrl(url);
+                updateProfile(username, url);
+              }}
+            />
           </Center>
         </Box>
         <Box>
