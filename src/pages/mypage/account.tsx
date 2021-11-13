@@ -11,10 +11,10 @@ import {
   Spacer,
   Text,
   useColorModeValue,
-  useToast,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useSession } from '@/hooks/useSession';
+import { useToast } from '@/hooks/useToast';
 import AvatarProfile from '@/components/utils/AvatarProfile';
 
 export default function MypageAccountPage() {
@@ -25,7 +25,7 @@ export default function MypageAccountPage() {
   const [email, setEmail] = useState('');
   const { session } = useSession();
   const { replace } = useRouter();
-  const toast = useToast();
+  const { messageOnToast } = useToast();
 
   useEffect(() => {
     if (!Object.keys(session).length) {
@@ -34,15 +34,6 @@ export default function MypageAccountPage() {
       getProfile();
     }
   }, []);
-
-  function messageOnToast(message, status) {
-    toast({
-      title: message,
-      status: status,
-      position: "top",
-      isClosable: true,
-    });
-  };
 
   const unAuthorizedUser = { id: 0 };
 
