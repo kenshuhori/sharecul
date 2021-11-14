@@ -14,6 +14,7 @@ const sessionState = atom({
 export const useSession = () => {
   const { replace } = useRouter();
   const [session, setSession] = useRecoilState(sessionState);
+
   useEffect(() => {
     let session: object;
     session = supabase.auth.session() || {};
@@ -41,6 +42,8 @@ export const useSession = () => {
 
   async function deleteUser() {
     console.log("hogehoge");
+    console.log(session);
+    // await supabase.auth.api.deleteUser()
   }
   return {session, signIn, signUp, signOut, deleteUser};
 };

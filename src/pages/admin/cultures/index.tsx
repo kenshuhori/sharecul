@@ -24,7 +24,6 @@ import {
 } from '@chakra-ui/react';
 import { ContentHeader } from '@/components/admin/ContentHeader';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import api from '@/utils/api';
 
 const CulturesPage = () => {
   const bg = useColorModeValue("white", "gray.700");

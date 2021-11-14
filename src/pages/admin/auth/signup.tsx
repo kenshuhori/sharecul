@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import { supabase } from '@/utils/supabase';
 import { InputChecker } from '@/components/utils/InputChecker';
-import api from '@/utils/api';
 
 const IndexPage = () => {
   const formBackground = useColorModeValue("gray.100", "gray.700");
