@@ -98,6 +98,19 @@ export default function MypageAccountPage() {
     }
   }
 
+  async function deleteAccount() {
+    try {
+      setLoading(true);
+      await deleteUser();
+      messageOnToast("削除しました。", "success");
+      replace('/');
+    } catch (error: any) {
+      messageOnToast(error.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <Container background={formBackground} >
@@ -138,7 +151,9 @@ export default function MypageAccountPage() {
         </Stack>
       </Container>
       <Center mb="100px">
-        <Link onClick={deleteUser} color="orange.500">アカウントを削除する</Link>
+        <Link onClick={deleteAccount} color="orange.500">
+          <span>{loading ? '削除しています...' : 'アカウントを削除する'}</span>
+        </Link>
       </Center>
     </>
   );

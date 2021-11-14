@@ -5,6 +5,7 @@ import {
   atom,
   useRecoilState,
 } from 'recoil';
+import api from '@/utils/api';
 
 const sessionState = atom({
   key: 'session',
@@ -41,9 +42,8 @@ export const useSession = () => {
   }
 
   async function deleteUser() {
-    console.log("hogehoge");
-    console.log(session);
-    // await supabase.auth.api.deleteUser()
+    let query_params = { user_uid: session.user.id };
+    let response = await api.delete('/api/auth/user', query_params);
   }
   return {session, signIn, signUp, signOut, deleteUser};
 };

@@ -1,4 +1,5 @@
 import nextConnect from 'next-connect';
+import { supabase } from "@/utils/supabase";
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const apiRoute = nextConnect({
@@ -10,9 +11,12 @@ const apiRoute = nextConnect({
   },
 });
 
-apiRoute.post(async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("Request to POST:api/auth/signup has come!!");
-  const result = { hoge: 'signupしましたよ' };
+apiRoute.delete(async (req: NextApiRequest, res: NextApiResponse) => {
+  await supabase.auth.api.deleteUser(
+    req.body['user_uid'],
+    process.env.SERVICE_ROLE_KEY
+  );
+  const result = { message: '削除しました' };
   res.status(200).json(result);
 });
 
