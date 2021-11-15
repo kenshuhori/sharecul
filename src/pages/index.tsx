@@ -36,7 +36,7 @@ export default function IndexPage() {
             <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
           </Center>
         </Box>
-        <Box px="100px" py="30px">
+        <Box px={{ base: "5%", md: "100px" }} py="30px">
           <Flex direction={{ base: "column", md: "row" }} >
             <Box w={{ base: "100%", md: "45%" }} py={{ base: "4", md: "0" }} >
               <InputGroup>

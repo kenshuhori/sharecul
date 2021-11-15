@@ -14,7 +14,7 @@ const sessionState = atom({
 
 export const useSession = () => {
   const { replace } = useRouter();
-  const [session, setSession] = useRecoilState(sessionState);
+  const [session, setSession] = useRecoilState<any>(sessionState);
 
   useEffect(() => {
     let session: object;
