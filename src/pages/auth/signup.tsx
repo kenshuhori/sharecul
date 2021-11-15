@@ -29,7 +29,7 @@ export default function AuthSignupPage() {
   const { messageOnToast } = useToast();
 
   useEffect(() => {
-    if (Object.keys(session).length) {
+    if (session) {
       replace('/mypage/account');
     }
   }, []);

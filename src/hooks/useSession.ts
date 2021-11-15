@@ -17,10 +17,13 @@ export const useSession = () => {
   const [session, setSession] = useRecoilState<any>(sessionState);
 
   useEffect(() => {
-    let session: object;
-    session = supabase.auth.session() || {};
+    const session: any = supabase.auth.session();
     setSession(session);
   }, []);
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    setSession(session);
+  })
 
   async function signUp(email: string, password: string) {
     const { session, error } = await supabase.auth.signUp({ email, password });

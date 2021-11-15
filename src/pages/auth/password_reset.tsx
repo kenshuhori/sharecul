@@ -22,7 +22,7 @@ export default function AuthPasswordResetPage() {
   const { replace } = useRouter();
 
   useEffect(() => {
-    if (Object.keys(session).length) {
+    if (session) {
       replace('/mypage/account');
     }
   }, []);

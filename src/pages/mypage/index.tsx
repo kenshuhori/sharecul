@@ -10,7 +10,7 @@ export default function MyPageIndexPage() {
   const { replace } = useRouter();
 
   useEffect(() => {
-    if (!Object.keys(session).length) {
+    if (!session) {
       replace('/auth/signin');
     }
   }, []);

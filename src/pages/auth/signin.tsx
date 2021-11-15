@@ -22,7 +22,7 @@ export default function AuthSigninPage() {
   const { replace } = useRouter();
 
   useEffect(() => {
-    if (Object.keys(session).length) {
+    if (session) {
       replace('/mypage/account');
     }
   }, []);
@@ -31,7 +31,7 @@ export default function AuthSigninPage() {
     try {
       setLoading(true);
       const session　= await signIn(event.target.email.value, event.target.password.value);
-      if (Object.keys(session).length) {
+      if (session) {
         replace('/mypage/account');
       }
     } catch (error: any) {

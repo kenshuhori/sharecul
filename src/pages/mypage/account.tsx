@@ -29,7 +29,7 @@ export default function MypageAccountPage() {
   const { messageOnToast } = useToast();
 
   useEffect(() => {
-    if (!Object.keys(session).length) {
+    if (!session) {
       replace('/auth/signin');
     } else {
       getProfile();
@@ -136,11 +136,11 @@ export default function MypageAccountPage() {
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">お名前</Text>
-            <Input type="text" name="name" placeholder="田中 太郎" value={username} required size="md" />
+            <Input type="text" name="name" placeholder="田中 太郎" defaultValue={username} onChange={(e) => {setUsername(e.target.value)}} required size="md" />
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
-            <Input type="email" name="email" placeholder="sharecul@example.com" value={email} required size="md" />
+            <Input type="email" name="email" placeholder="sharecul@example.com" defaultValue={email} onChange={(e) => {setEmail(e.target.value)}} required size="md" />
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">

@@ -72,7 +72,7 @@ export const Header = () => {
         <Box p="2">
           {
             (() => {
-              if (Object.keys(session).length) {
+              if (session) {
                 return (
                   <Menu>
                     <MenuButton px={4} py={2} as={Button} colorScheme="teal" transition="all 0.2s" borderRadius="md">
