@@ -9,7 +9,7 @@ import api from '@/utils/api';
 
 const sessionState = atom({
   key: 'session',
-  default: {},
+  default: null,
 });
 
 export const useSession = () => {
@@ -26,16 +26,25 @@ export const useSession = () => {
   })
 
   async function signUp(email: string, password: string) {
-    const { session, error } = await supabase.auth.signUp({ email, password });
+    const { session, error } = await supabase.auth.signUp(
+      {
+        email: email,
+        password: password
+      },
+      {
+        data: {
+          name: '名無しの権兵衛'
+        },
+        redirectTo: '/mypage/account'
+      }
+    );
     if (error) throw error;
-    if (session) setSession(session);
     return { session };
   }
 
   async function signIn(email: string, password: string) {
     const { session, error } = await supabase.auth.signIn({ email, password });
     if (error) throw error;
-    if (session) setSession(session);
     return { session };
   }
 
@@ -47,6 +56,8 @@ export const useSession = () => {
   async function deleteUser() {
     let query_params = { user_uid: session.user.id };
     let response = await api.delete('/api/auth/user', query_params);
+    console.log("ここ:" + response);
+    console.log(response);
   }
   return {session, signIn, signUp, signOut, deleteUser};
 };
