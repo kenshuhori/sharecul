@@ -23,7 +23,7 @@ export const useSession = () => {
 
   supabase.auth.onAuthStateChange((event, session) => {
     setSession(session);
-  })
+  });
 
   async function signUp(email: string, password: string) {
     const { session, error } = await supabase.auth.signUp(
@@ -53,11 +53,16 @@ export const useSession = () => {
     replace(redirect_path);
   }
 
+  async function resetPassword(email: string) {
+    let query_params = { email: email };
+    let response = await api.delete('/api/auth/password', query_params);
+  }
+
   async function deleteUser() {
     let query_params = { user_uid: session.user.id };
     let response = await api.delete('/api/auth/user', query_params);
     console.log("ここ:" + response);
     console.log(response);
   }
-  return {session, signIn, signUp, signOut, deleteUser};
+  return {session, signIn, signUp, signOut, resetPassword, deleteUser};
 };

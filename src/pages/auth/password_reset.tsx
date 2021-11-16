@@ -14,18 +14,33 @@ import {
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from '@/hooks/useSession';
+import { useToast } from '@/hooks/useToast';
 
 export default function AuthPasswordResetPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
-  const { session } = useSession();
+  const [email, setEmail] = useState('');
+  const { session, resetPassword } = useSession();
   const { replace } = useRouter();
+  const { messageOnToast } = useToast();
 
   useEffect(() => {
     if (session) {
       replace('/mypage/account');
     }
   }, []);
+
+  async function reset() {
+    try {
+      setLoading(true);
+      await resetPassword(email);
+      messageOnToast("パスワード再設定メールを送信しました。", "success");
+    } catch (error: any) {
+      messageOnToast(error.message, "error");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <form
@@ -46,11 +61,11 @@ export default function AuthPasswordResetPage() {
           <Spacer />
           <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
-            <Input name="email" type="email" placeholder="sharecul@example.com" size="md" />
+            <Input name="email" type="email" placeholder="sharecul@example.com" size="md" onChange={(e) => {setEmail(e.target.value);}}  />
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">
-            <Button type="submit" colorScheme="teal" size="md" w="100%" disabled={loading}>
+            <Button type="submit" colorScheme="teal" size="md" w="100%" onClick={() => reset()} disabled={loading}>
               <span>{loading ? '送信しています...' : '送信'}</span>
             </Button>
           </Box>
