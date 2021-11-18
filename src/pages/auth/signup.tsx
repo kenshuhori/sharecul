@@ -40,7 +40,7 @@ export default function AuthSignupPage() {
     try {
       setLoading(true);
       await signUp(email, password);
-      messageOnToast(email + " 宛にメールを送信しました！", "success");
+      messageOnToast("メールを送信しました！", "success");
       setComplete(true);
     } catch (error: any) {
       messageOnToast(error.error_description || error.message, "error");
@@ -50,7 +50,7 @@ export default function AuthSignupPage() {
   };
 
   if (complete) {
-    return (<SendMailComplete title="アカウント作成" email={email}></SendMailComplete>)
+    return (<SendMailComplete title="アカウント作成" email={email}></SendMailComplete>);
   } else {
     return (
       <form
