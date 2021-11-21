@@ -33,7 +33,7 @@ export default function MypageAccountPage() {
 
   useEffect(() => {
     if (!session) {
-      replace('/');
+      // replace('/');
     } else {
       getProfile();
     }

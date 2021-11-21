@@ -12,12 +12,17 @@ const apiRoute = nextConnect({
 });
 
 apiRoute.delete(async (req: NextApiRequest, res: NextApiResponse) => {
-  await supabase.auth.api.deleteUser(
+  const { user, error } = await supabase.auth.api.deleteUser(
     req.body['user_uid'],
     process.env.SERVICE_ROLE_KEY
   );
-  const result = { message: '削除しました' };
-  res.status(200).json(result);
+  if (error) {
+    console.log(error);
+    res.status(400).json({message: 'エラーが発生しました。'});
+  } else {
+    const result = { message: '削除しました' };
+    res.status(200).json(result);
+  }
 });
 
 export default apiRoute;
