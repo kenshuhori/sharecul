@@ -16,7 +16,6 @@ type Props = {title: string, email: string};
 
 export const SendMailComplete: VFC<Props> = (props) => {
   let {title, email} = props;
-  email = "launcherno777@gmail.com";
   const formBackground = useColorModeValue("orange.50", "gray.700");
 
   return(

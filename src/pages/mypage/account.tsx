@@ -101,9 +101,8 @@ export default function MypageAccountPage() {
   async function deleteAccount() {
     try {
       setLoading(true);
-      await deleteUser();
+      await deleteUser('/');
       messageOnToast("削除しました。", "success");
-      replace('/');
     } catch (error: any) {
       messageOnToast(error.message, "error");
     } finally {
@@ -136,23 +135,23 @@ export default function MypageAccountPage() {
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">お名前</Text>
-            <Input type="text" name="name" placeholder="田中 太郎" defaultValue={username} onChange={(e) => {setUsername(e.target.value)}} required size="md" />
+            <Input type="text" name="name" placeholder="田中 太郎" defaultValue={username} onChange={(e) => {setUsername(e.target.value);}} required size="md" />
           </Box>
           <Box>
             <Text fontSize="sm" mb="6px">メールアドレス</Text>
-            <Input type="email" name="email" placeholder="sharecul@example.com" defaultValue={email} onChange={(e) => {setEmail(e.target.value)}} required size="md" />
+            <Input type="email" name="email" placeholder="sharecul@example.com" defaultValue={email} onChange={(e) => {setEmail(e.target.value);}} required size="md" />
           </Box>
           <Spacer />
           <Box justifyContent="flex-end">
             <Button type="submit" colorScheme="teal" size="md" w="100%" onClick={() => updateProfile(username)} disabled={loading}>
-              <span>{loading ? '更新しています...' : '更新する'}</span>
+              <span>{loading ? '処理中です...' : '更新する'}</span>
             </Button>
           </Box>
         </Stack>
       </Container>
       <Center mb="100px">
         <Link onClick={deleteAccount} color="orange.500">
-          <span>{loading ? '削除しています...' : 'アカウントを削除する'}</span>
+          <span>{loading ? '処理中です...' : 'アカウントを削除する'}</span>
         </Link>
       </Center>
     </>

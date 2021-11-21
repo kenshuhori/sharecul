@@ -24,6 +24,7 @@ export default function AuthSignupPage() {
   const { replace } = useRouter();
   const { session, signUp } = useSession();
   const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirm, setPasswordConfirm] = useState('');
@@ -39,7 +40,7 @@ export default function AuthSignupPage() {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      await signUp(email, password);
+      await signUp(email, password, name);
       messageOnToast("メールを送信しました！", "success");
       setComplete(true);
     } catch (error: any) {
@@ -68,6 +69,15 @@ export default function AuthSignupPage() {
               <Center>
                 <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
               </Center>
+            </Box>
+            <Box>
+              <Text fontSize="sm" mb="6px">お名前</Text>
+              <InputGroup>
+                <Input type="text" name="name" placeholder="シェア　太郎" onChange={(e) => {setName(e.target.value);}} required size="md" />
+                <InputRightElement>
+                  <InputChecker type="text" value={ {text: name} }/>
+                </InputRightElement>
+              </InputGroup>
             </Box>
             <Box>
               <Text fontSize="sm" mb="6px">メールアドレス</Text>

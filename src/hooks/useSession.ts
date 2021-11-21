@@ -25,20 +25,18 @@ export const useSession = () => {
     setSession(session);
   });
 
-  async function signUp(email: string, password: string) {
-    const { session, error } = await supabase.auth.signUp(
+  async function signUp(email: string, password: string, username: string) {
+    const { user, session, error } = await supabase.auth.signUp(
       {
         email: email,
         password: password
       },
       {
-        data: {
-          name: '名無しの権兵衛'
-        },
         redirectTo: '/mypage/account'
       }
     );
     if (error) throw error;
+    initProfile(user.id, username);
     return { session };
   }
 
@@ -58,11 +56,29 @@ export const useSession = () => {
     let response = await api.delete('/api/auth/password', query_params);
   }
 
-  async function deleteUser() {
+  async function deleteUser(redirect_path: string) {
     let query_params = { user_uid: session.user.id };
+    // await deleteProfile(session.user.id);
     let response = await api.delete('/api/auth/user', query_params);
-    console.log("ここ:" + response);
-    console.log(response);
+    await signOut(redirect_path);
+  }
+
+  async function initProfile(user_id: string, username: string) {
+    const updates = {
+      id: user_id,
+      username,
+      updated_at: new Date(),
+    };
+    const { error } = await supabase.from('profiles').upsert(updates, {
+      returning: 'minimal', // Don't return the value after inserting
+    });
+    if (error) throw error;
+  }
+
+  async function deleteProfile(user_id: string) {
+    const { data, error } = await supabase.from('profiles').delete().eq('id', user_id);
+
+    if (error) throw error;
   }
   return {session, signIn, signUp, signOut, resetPassword, deleteUser};
 };
