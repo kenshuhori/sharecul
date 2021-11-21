@@ -1,3 +1,4 @@
+import UUID from 'uuidjs';
 import { supabase } from "@/utils/supabase";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -48,7 +49,7 @@ export const useSession = () => {
     // let query_params = { user_uid: session.user.id };
     // await deleteProfile(session.user.id);
     // let response = await api.delete('/api/auth/user', query_params);
-    const { user, error } = await supabase.auth.update({password: 'hogehoge'});
+    const { user, error } = await supabase.auth.update({password: UUID.generate()});
     if (error) throw error;
     messageOnToast("アカウントを削除しました。", "success");
     await signOut(redirect_path);
