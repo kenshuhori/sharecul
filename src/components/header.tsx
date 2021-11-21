@@ -34,7 +34,7 @@ export const Header = () => {
 
   return (
     <header>
-      <Flex pos="fixed" w="100%" h="90px" py={4} px="5%" bg={background} boxShadow="base">
+      <Flex pos="fixed" w="100%" h="70px" py="8px" px="2%" bg={background} boxShadow="base">
         <Box>
           <Link href="/">
             <Image src="/sharecul.png" h="55px" alt="シェアカルのロゴです"></Image>
