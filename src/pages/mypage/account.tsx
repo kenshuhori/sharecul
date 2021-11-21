@@ -105,7 +105,6 @@ export default function MypageAccountPage() {
     try {
       setLoading(true);
       await deleteUser('/');
-      messageOnToast("削除しました。", "success");
     } catch (error: any) {
       messageOnToast(error.message, "error");
     } finally {

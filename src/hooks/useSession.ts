@@ -45,9 +45,11 @@ export const useSession = () => {
   }
 
   async function deleteUser(redirect_path: string) {
-    let query_params = { user_uid: session.user.id };
+    // let query_params = { user_uid: session.user.id };
     // await deleteProfile(session.user.id);
-    let response = await api.delete('/api/auth/user', query_params);
+    // let response = await api.delete('/api/auth/user', query_params);
+    const { user, error } = await supabase.auth.update({password: 'hogehoge'});
+    if (error) throw error;
     messageOnToast("アカウントを削除しました。", "success");
     await signOut(redirect_path);
   }
