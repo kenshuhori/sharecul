@@ -7,8 +7,23 @@ import Head from 'next/head';
 import '@/styles/app.scss';
 import React from "react";
 import { RecoilRoot } from 'recoil';
+import { supabase } from "@/utils/supabase";
+import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
 
 const CustomComponent: React.VFC<{pathname: string, children: React.ReactNode}> = ({pathname, children}) => {
+  const [session, setSession] = useRecoilState(sessionState);
+  useEffect(() => {
+    if (!session) {
+      const session: any = supabase.auth.session();
+      setSession(session);
+    }
+  }, []);
+  supabase.auth.onAuthStateChange((event, session) => {
+    setSession(session);
+  });
+
   if (pathname.startsWith("/admin/auth")) {
     return (
       <>

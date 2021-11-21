@@ -18,11 +18,14 @@ import { useSession } from '@/hooks/useSession';
 import { InputChecker } from '@/components/utils/InputChecker';
 import { SendMailComplete } from '@/components/auth/SendMailConplete';
 import { useToast } from '@/hooks/useToast';
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
 
 export default function AuthSignupPage() {
+  const [session] = useRecoilState(sessionState);
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const { replace } = useRouter();
-  const { session, signUp } = useSession();
+  const { signUp } = useSession();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

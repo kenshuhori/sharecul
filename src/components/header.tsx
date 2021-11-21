@@ -17,9 +17,12 @@ import {
 import { ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { useSession } from '@/hooks/useSession';
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
 
 export const Header = () => {
-  const { session, signOut } = useSession();
+  const [session] = useRecoilState(sessionState);
+  const { signOut } = useSession();
   const { colorMode, toggleColorMode } = useColorMode();
   const background = useColorModeValue("white", "gray.700");
   const [isRendered, setIsRendered] = useState(false);

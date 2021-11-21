@@ -16,13 +16,16 @@ import { useRouter } from 'next/router';
 import { useSession } from '@/hooks/useSession';
 import { useToast } from '@/hooks/useToast';
 import { SendMailComplete } from '@/components/auth/SendMailConplete';
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
 
 export default function AuthPasswordResetPage() {
+  const [session] = useRecoilState(sessionState);
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [complete, setComplete] = useState(false);
-  const { session, resetPassword } = useSession();
+  const { resetPassword } = useSession();
   const { replace } = useRouter();
   const { messageOnToast } = useToast();
 

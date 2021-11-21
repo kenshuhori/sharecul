@@ -3,15 +3,16 @@ import {
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useSession } from '@/hooks/useSession';
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
 
 export default function MyPageIndexPage() {
-  const { session } = useSession();
+  const [session] = useRecoilState(sessionState);
   const { replace } = useRouter();
 
   useEffect(() => {
     if (!session) {
-      replace('/auth/signin');
+      replace('/');
     }
   }, []);
 

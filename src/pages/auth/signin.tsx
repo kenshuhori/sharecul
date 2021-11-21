@@ -14,18 +14,21 @@ import {
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from '@/hooks/useSession';
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
 
 export default function AuthSigninPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
-  const { session, signIn } = useSession();
+  const { signIn } = useSession();
   const { replace } = useRouter();
+  const [session] = useRecoilState(sessionState);
 
   useEffect(() => {
     if (session) {
       replace('/mypage/account');
     }
-  }, []);
+  }, [session]);
 
   const handleSubmit = async (event: any) => {
     try {

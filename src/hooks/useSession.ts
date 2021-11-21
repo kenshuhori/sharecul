@@ -1,29 +1,15 @@
 import { supabase } from "@/utils/supabase";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import {
-  atom,
-  useRecoilState,
-} from 'recoil';
 import api from '@/utils/api';
-
-const sessionState = atom({
-  key: 'session',
-  default: null,
-});
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
+import { useToast } from '@/hooks/useToast';
 
 export const useSession = () => {
   const { replace } = useRouter();
-  const [session, setSession] = useRecoilState<any>(sessionState);
-
-  useEffect(() => {
-    const session: any = supabase.auth.session();
-    setSession(session);
-  }, []);
-
-  supabase.auth.onAuthStateChange((event, session) => {
-    setSession(session);
-  });
+  const [session] = useRecoilState(sessionState);
+  const { messageOnToast } = useToast();
 
   async function signUp(email: string, password: string, username: string) {
     const { user, session, error } = await supabase.auth.signUp(
@@ -43,11 +29,13 @@ export const useSession = () => {
   async function signIn(email: string, password: string) {
     const { session, error } = await supabase.auth.signIn({ email, password });
     if (error) throw error;
+    messageOnToast("ログインしました。", "success");
     return { session };
   }
 
   async function signOut(redirect_path: string) {
     supabase.auth.signOut();
+    messageOnToast("ログアウトしました。", "success");
     replace(redirect_path);
   }
 
@@ -60,6 +48,7 @@ export const useSession = () => {
     let query_params = { user_uid: session.user.id };
     // await deleteProfile(session.user.id);
     let response = await api.delete('/api/auth/user', query_params);
+    messageOnToast("アカウントを削除しました。", "success");
     await signOut(redirect_path);
   }
 
@@ -80,5 +69,5 @@ export const useSession = () => {
 
     if (error) throw error;
   }
-  return {session, signIn, signUp, signOut, resetPassword, deleteUser};
+  return { signIn, signUp, signOut, resetPassword, deleteUser};
 };

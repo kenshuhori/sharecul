@@ -17,6 +17,8 @@ import { useRouter } from 'next/router';
 import { useSession } from '@/hooks/useSession';
 import { useToast } from '@/hooks/useToast';
 import AvatarProfile from '@/components/utils/AvatarProfile';
+import { useRecoilState } from 'recoil';
+import { sessionState } from '@/utils/atoms';
 
 export default function MypageAccountPage() {
   const formBackground = useColorModeValue("orange.50", "gray.700");
@@ -24,17 +26,18 @@ export default function MypageAccountPage() {
   const [username, setUsername] = useState('');
   const [avatar_url, setAvatarUrl] = useState('');
   const [email, setEmail] = useState('');
-  const { session, deleteUser } = useSession();
+  const { deleteUser } = useSession();
   const { replace } = useRouter();
   const { messageOnToast } = useToast();
+  const [session] = useRecoilState(sessionState);
 
   useEffect(() => {
     if (!session) {
-      replace('/auth/signin');
+      replace('/');
     } else {
       getProfile();
     }
-  }, []);
+  }, [session]);
 
   const unAuthorizedUser = { id: 0 };
 
