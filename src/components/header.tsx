@@ -11,19 +11,18 @@ import {
   MenuItem,
   Spacer,
   Text,
-  useColorMode,
   useColorModeValue
 } from "@chakra-ui/react";
-import { ChevronDownIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useSession } from '@/hooks/useSession';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { sessionState } from '@/utils/atoms';
+import { LinkButton } from "@/components/utils/LinkButton";
 
 export const Header = () => {
   const [session] = useRecoilState(sessionState);
   const { signOut } = useSession();
-  const { colorMode, toggleColorMode } = useColorMode();
   const background = useColorModeValue("white", "gray.700");
   const [isRendered, setIsRendered] = useState(false);
 
@@ -43,15 +42,15 @@ export const Header = () => {
             <Image src="/sharecul.png" h="55px" alt="シェアカルのロゴです"></Image>
           </Link>
         </Box>
-        <Box p="2" d={{ base: "none", md: "block" }}>
+        <Box p="2">
           <Text fontSize="xs" color="orange.400"><b>みんなとシェアするカルチャー</b></Text>
           <Text fontSize="md"><b>シェアカル ふたこ</b></Text>
         </Box>
         <Spacer />
-        <Box p="4">
+        <Box p="4" d={{ base: "none", md: "block" }}>
           <Link href="/about"><b>About</b></Link>
         </Box>
-        <Box p="2">
+        <Box p="2" d={{ base: "none", md: "block" }}>
           { isRendered && (
             <Menu>
             <MenuButton px={4} py={2} transition="all 0.2s" borderRadius="md" _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
@@ -64,13 +63,8 @@ export const Header = () => {
           </Menu>
           ) }
         </Box>
-        <Box p="3" d={{ base: "none", md: "block" }}>
-          <IconButton
-            size="sm"
-            aria-label="flick darkmode"
-            icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
-            onClick={toggleColorMode}
-          ></IconButton>
+        <Box p="2">
+          <LinkButton name="ログイン" path="/auth/signin" variant="ghost"></LinkButton>
         </Box>
         <Box p="2">
           {
@@ -89,9 +83,7 @@ export const Header = () => {
                 );
               } else {
                 return (
-                  <Link href="/auth/signin" _hover={{ textDecoration: "none" }}>
-                    <Button colorScheme="teal" size="md"><b>ログイン</b></Button>
-                  </Link>
+                  <LinkButton name="新規登録" path="/auth/signup"></LinkButton>
                 );
               }
             })()
