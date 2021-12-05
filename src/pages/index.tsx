@@ -23,7 +23,7 @@ export default function IndexPage() {
   return (
     <div>
       <Stack>
-        <Box>
+        <Box d="none">
           <Image src="/lake.jpg" w="100%" h="300px" alt="シェアカルのテーマ画像です"></Image>
         </Box>
         <Box>
