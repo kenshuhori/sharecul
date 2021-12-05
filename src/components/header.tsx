@@ -30,6 +30,8 @@ import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { useEffect, useState } from 'react';
 import { LinkButton } from "@/components/utils/LinkButton";
 import { ToggleSignupButton } from "@/components/header/ToggleSignupButton";
+import { ToggleSigninButton } from "@/components/header/ToggleSigninButton";
+import { ToggleSignoutButton } from "@/components/header/ToggleSignoutButton";
 
 export const Header = () => {
   const background = useColorModeValue("white", "gray.700");
@@ -73,7 +75,7 @@ export const Header = () => {
           ) }
         </Box>
         <Box p="2" d={{ base: "none", md: "block" }}>
-          <LinkButton name="ログイン" path="/auth/signin" variant="ghost"></LinkButton>
+          <ToggleSigninButton />
         </Box>
         <Box p="2" size={{ base: "sm", md: "md" }}>
           <ToggleSignupButton />
@@ -102,7 +104,10 @@ export const Header = () => {
                     <ToggleSignupButton />
                   </Center>
                   <Center>
-                    <LinkButton name="ログイン" path="/auth/signin" variant="ghost"></LinkButton>
+                    <ToggleSigninButton />
+                  </Center>
+                  <Center>
+                    <ToggleSignoutButton />
                   </Center>
                   <Center>
                     <Link href="/about">シェアカルとは</Link>
