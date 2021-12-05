@@ -63,7 +63,7 @@ export default function IndexPage() {
         <Box px="5%" pb="100px">
           <section>
             <Stack>
-              {[1, 2].map(item =>
+              {[1, 2, 3].map(item =>
                 <article key={item}>
                   <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
                     <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">

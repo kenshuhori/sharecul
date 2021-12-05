@@ -2,6 +2,7 @@ import React from "react";
 import {
   Box,
   Button,
+  Center,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -19,6 +20,7 @@ import {
   MenuList,
   MenuItem,
   Spacer,
+  Stack,
   Text,
   useBreakpointValue,
   useColorModeValue,
@@ -95,7 +97,17 @@ export const Header = () => {
               <DrawerCloseButton />
               <DrawerHeader></DrawerHeader>
               <DrawerBody>
-                <Input placeholder='Type here...' />
+                <Stack>
+                  <Center>
+                    <ToggleSignupButton />
+                  </Center>
+                  <Center>
+                    <LinkButton name="ログイン" path="/auth/signin" variant="ghost"></LinkButton>
+                  </Center>
+                  <Center>
+                    <Link href="/about">シェアカルとは</Link>
+                  </Center>
+                </Stack>
               </DrawerBody>
             </DrawerContent>
           </Drawer>

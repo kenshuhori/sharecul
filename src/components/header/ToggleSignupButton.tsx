@@ -4,7 +4,8 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem
+  MenuItem,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { useSession } from '@/hooks/useSession';
@@ -13,6 +14,7 @@ import { sessionState } from '@/utils/atoms';
 import { LinkButton } from "@/components/utils/LinkButton";
 
 export const ToggleSignupButton = () => {
+  const size = useBreakpointValue({ base: 'sm', md: 'md' });
   const [session] = useRecoilState(sessionState);
   const { signOut } = useSession();
 
@@ -27,7 +29,7 @@ export const ToggleSignupButton = () => {
           if (session) {
             return (
               <Menu>
-                <MenuButton px={4} py={2} as={Button} colorScheme="teal" transition="all 0.2s" borderRadius="md">
+                <MenuButton px={4} py={2} as={Button} colorScheme="teal" transition="all 0.2s" borderRadius="md" size={size}>
                   <b>マイページ</b> <ChevronDownIcon />
                 </MenuButton>
                 <MenuList>
