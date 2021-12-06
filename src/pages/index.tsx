@@ -14,6 +14,8 @@ import {
   Spacer,
   Text,
   useColorModeValue,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react';
 import { LinkButton } from "@/components/utils/LinkButton";
 import { SearchIcon } from '@chakra-ui/icons';
@@ -36,9 +38,9 @@ export default function IndexPage() {
             <Divider w="200px" borderBottomWidth="3px" borderColor="teal.600" />
           </Center>
         </Box>
-        <Box px={{ base: "5%", md: "100px" }} py="30px">
+        <Box py="30px">
           <Flex direction={{ base: "column", md: "row" }} >
-            <Box w={{ base: "100%", md: "45%" }} py={{ base: "4", md: "0" }} >
+            <Box w={{ base: "100%", md: "55%" }} py={{ base: "4", md: "0" }} >
               <InputGroup>
                 <InputLeftElement pointerEvents="none">
                   <SearchIcon color="gray.300" />
@@ -60,11 +62,12 @@ export default function IndexPage() {
             </Box>
           </Flex>
         </Box>
-        <Box px="5%" pb="100px">
+        <Box pb="100px">
           <section>
-            <Stack>
-              {[1, 2, 3].map(item =>
-                <article key={item}>
+            <Wrap spacing='1%'>
+            {[1, 2, 3, 4, 5].map(item =>
+              <WrapItem key={item} w={{ base: "100%", sm: "100%", md: "100%", lg: "49%" }}>
+                <article>
                   <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
                     <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Image src="/brothers.jpg" alt="シェアカルアイテムの画像です"></Image>
@@ -72,7 +75,7 @@ export default function IndexPage() {
                     <Container maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Stack h="100%">
                         <Box>
-                          <Text fontSize="2xl"><b>タイトルが入ります</b></Text>
+                          <Text fontSize="2xl"><b>タイトルが入ります_{item}</b></Text>
                         </Box>
                         <Flex>
                           <Text fontSize="md">著者名が入ります</Text>
@@ -90,8 +93,9 @@ export default function IndexPage() {
                     </Container>
                   </Flex>
                 </article>
-              )}
-            </Stack>
+              </WrapItem>
+            )}
+            </Wrap>
           </section>
         </Box>
       </Stack>
