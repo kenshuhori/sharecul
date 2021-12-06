@@ -52,7 +52,7 @@ export default function AuthSigninPage() {
       }}
     >
       <Container background={formBackground} >
-        <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" pt="40px" pb="50px" >
+        <Stack spacing={6} mx="auto" mt="80px" mb="50px" px={{ base: "10%", md: "20%"}} pt="40px" pb="50px">
           <Box>
             <Center>
               <Text fontSize="2xl"><strong>ログイン</strong></Text>
