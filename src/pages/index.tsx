@@ -30,7 +30,7 @@ export default function IndexPage() {
         </Box>
         <Box>
           <Center pt={8}>
-            <Text fontSize="3xl"><strong>学びのシェア</strong></Text>
+            <Text fontSize="2xl"><strong>学びのシェア</strong></Text>
           </Center>
         </Box>
         <Box>

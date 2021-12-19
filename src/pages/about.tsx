@@ -12,7 +12,7 @@ export default function AboutPage() {
       <Stack>
         <Box>
           <Center pt={8}>
-            <Text fontSize="3xl"><strong>About</strong></Text>
+            <Text fontSize="2xl"><strong>About</strong></Text>
           </Center>
         </Box>
         <Box>

@@ -27,7 +27,7 @@ export default function CultureIndexPage() {
       <Stack>
         <Box>
           <Center pt={8}>
-            <Text fontSize="3xl"><strong>お申込み</strong></Text>
+            <Text fontSize="2xl"><strong>お申込み</strong></Text>
           </Center>
         </Box>
         <Box>
