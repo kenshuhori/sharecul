@@ -36,6 +36,19 @@ export default function IndexPage() {
     fetchCultures();
   }, []);
 
+  const filterCultures = (text) => {
+    console.log("ここ");
+    console.log(text);
+    let search_words = text.split(/\s+/);
+    let filteredCultures = cultures.filter((culture) => {
+      let culture_info = [culture.title, culture.description, culture.price].join();
+      return search_words.every((word) => {
+        culture_info.indexOf(word) > -1;
+      });
+    });
+    setCultures(filteredCultures);
+  };
+
   return (
     <div>
       <Stack>
@@ -59,7 +72,7 @@ export default function IndexPage() {
                 <InputLeftElement pointerEvents="none">
                   <SearchIcon color="gray.300" />
                 </InputLeftElement>
-                <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} />
+                <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} onInput={(e) => {filterCultures(e.target.value);}} />
               </InputGroup>
             </Box>
             <Box m="0 0 0 auto">
