@@ -19,9 +19,21 @@ import {
 } from '@chakra-ui/react';
 import { LinkButton } from "@/components/utils/LinkButton";
 import { SearchIcon } from '@chakra-ui/icons';
+import { useState, useEffect } from 'react';
+import { readAll } from '@/utils/supabase';
 
 export default function IndexPage() {
+  const [cultures, setCultures] = useState([]);
   const articleBackground = useColorModeValue("red.50", "gray.600");
+
+  useEffect(() => {
+    const fetchCultures = async () => {
+      let res = await readAll('cultures');
+      setCultures(res);
+    };
+    fetchCultures();
+  }, []);
+
   return (
     <div>
       <Stack>
@@ -65,8 +77,8 @@ export default function IndexPage() {
         <Box pb="100px">
           <section>
             <Wrap spacing='1%'>
-            {[1, 2, 3, 4, 5].map(item =>
-              <WrapItem key={item} w={{ base: "100%", sm: "100%", md: "100%", lg: "49%" }}>
+            {cultures.map(culture =>
+              <WrapItem key={culture.id} w={{ base: "100%", sm: "100%", md: "100%", lg: "49%" }}>
                 <article>
                   <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
                     <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
@@ -75,15 +87,15 @@ export default function IndexPage() {
                     <Container maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Stack h="100%">
                         <Box>
-                          <Text fontSize="2xl"><b>タイトルが入ります_{item}</b></Text>
+                          <Text fontSize="2xl"><b>{culture.title}</b></Text>
                         </Box>
                         <Flex>
                           <Text fontSize="md">著者名が入ります</Text>
                           <Spacer />
-                          <Text fontSize="md">値段が入ります</Text>
+                          <Text fontSize="md">{culture.price}</Text>
                         </Flex>
                         <Box maxH={{ sm:"100px", md: "100px", lg:"200px" }} overflow="hidden">
-                          <Text fontSize="sm">説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。</Text>
+                          <Text fontSize="sm">{culture.description}</Text>
                         </Box>
                         <Spacer />
                         <Box justifyContent="flex-end">
