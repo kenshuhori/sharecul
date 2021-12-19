@@ -7,3 +7,12 @@ type Props = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
   onClickDiv: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
+
+export type Culture = {
+  id: number;
+  created_at: string;
+  profile_id: string;
+  title: string;
+  description: string;
+  price: number;
+}

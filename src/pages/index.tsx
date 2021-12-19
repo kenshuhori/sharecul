@@ -22,8 +22,10 @@ import { SearchIcon } from '@chakra-ui/icons';
 import { useState, useEffect } from 'react';
 import { readAll } from '@/utils/supabase';
 
+import type { Culture } from "@/@types/common";
+
 export default function IndexPage() {
-  const [cultures, setCultures] = useState([]);
+  const [cultures, setCultures] = useState<Culture[]>([]);
   const articleBackground = useColorModeValue("red.50", "gray.600");
 
   useEffect(() => {
