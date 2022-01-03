@@ -31,7 +31,7 @@ export default function AuthPasswordResetPage() {
 
   useEffect(() => {
     if (session) {
-      replace('/mypage/account');
+      replace('/mypage');
     }
   }, []);
 

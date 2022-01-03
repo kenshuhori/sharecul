@@ -36,13 +36,14 @@ export const ToggleSignupButton = () => {
                       <b>マイページ</b> <ChevronDownIcon />
                     </MenuButton>
                     <MenuList>
+                      <Link href="/mypage" _hover={{ textDecoration: "none" }}><MenuItem>マイページ</MenuItem></Link>
                       <Link href="/mypage/account" _hover={{ textDecoration: "none" }}><MenuItem>アカウント</MenuItem></Link>
                       <MenuItem onClick={handleSignOut}>ログアウト</MenuItem>
                     </MenuList>
                   </Menu>
                 </Box>
                 <Box d={{ base: "block", md: "none" }}>
-                  <LinkButton name="マイページ" path="/mypage/account"></LinkButton>
+                  <LinkButton name="マイページ" path="/mypage"></LinkButton>
                 </Box>
               </>
             );

@@ -26,7 +26,7 @@ export default function AuthSigninPage() {
 
   useEffect(() => {
     if (session) {
-      replace('/mypage/account');
+      replace('/mypage');
     }
   }, [session]);
 
@@ -35,7 +35,7 @@ export default function AuthSigninPage() {
       setLoading(true);
       const session　= await signIn(event.target.email.value, event.target.password.value);
       if (session) {
-        replace('/mypage/account');
+        replace('/mypage');
       }
     } catch (error: any) {
       alert(error.error_description || error.message);

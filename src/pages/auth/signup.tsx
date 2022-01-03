@@ -36,7 +36,7 @@ export default function AuthSignupPage() {
 
   useEffect(() => {
     if (session) {
-      replace('/mypage/account');
+      replace('/mypage');
     }
   }, []);
 

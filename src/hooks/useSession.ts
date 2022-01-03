@@ -19,7 +19,7 @@ export const useSession = () => {
         password: password
       },
       {
-        redirectTo: '/mypage/account'
+        redirectTo: '/mypage'
       }
     );
     if (error) throw error;
