@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Link,
   Menu,
@@ -28,15 +29,22 @@ export const ToggleSignupButton = () => {
         (() => {
           if (session) {
             return (
-              <Menu>
-                <MenuButton px={4} py={2} as={Button} colorScheme="teal" transition="all 0.2s" borderRadius="md" size={size}>
-                  <b>マイページ</b> <ChevronDownIcon />
-                </MenuButton>
-                <MenuList>
-                  <Link href="/mypage/account" _hover={{ textDecoration: "none" }}><MenuItem>アカウント</MenuItem></Link>
-                  <MenuItem onClick={handleSignOut}>ログアウト</MenuItem>
-                </MenuList>
-              </Menu>
+              <>
+                <Box d={{ base: "none", md: "block" }}>
+                  <Menu>
+                    <MenuButton px={4} py={2} as={Button} colorScheme="teal" transition="all 0.2s" borderRadius="md" size={size}>
+                      <b>マイページ</b> <ChevronDownIcon />
+                    </MenuButton>
+                    <MenuList>
+                      <Link href="/mypage/account" _hover={{ textDecoration: "none" }}><MenuItem>アカウント</MenuItem></Link>
+                      <MenuItem onClick={handleSignOut}>ログアウト</MenuItem>
+                    </MenuList>
+                  </Menu>
+                </Box>
+                <Box d={{ base: "block", md: "none" }}>
+                  <LinkButton name="マイページ" path="/mypage/account"></LinkButton>
+                </Box>
+              </>
             );
           } else {
             return (

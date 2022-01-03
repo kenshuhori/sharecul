@@ -115,7 +115,7 @@ export default function MypageAccountPage() {
   return (
     <>
       <Container background={formBackground} >
-        <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" py="50px">
+        <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="20px" py="50px">
           <Box>
             <Center>
               <Text fontSize="2xl"><strong>アカウント</strong></Text>

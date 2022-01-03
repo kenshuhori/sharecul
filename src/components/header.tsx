@@ -107,10 +107,11 @@ export const Header = () => {
                     <ToggleSigninButton />
                   </Center>
                   <Center>
-                    <ToggleSignoutButton />
-                  </Center>
-                  <Center>
                     <Link href="/about">シェアカルとは</Link>
+                  </Center>
+                  <Spacer />
+                  <Center>
+                    <ToggleSignoutButton />
                   </Center>
                 </Stack>
               </DrawerBody>
