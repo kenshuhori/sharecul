@@ -19,5 +19,8 @@ export async function upsertRow (tablename, values) {
   const { data, error } = await supabase
     .from(tablename)
     .upsert([values]);
+  if (error) {
+    throw error;
+  }
   return data;
 };

@@ -46,7 +46,7 @@ export default function MyPageIndexPage() {
           </Box>
           <Wrap spacing='1%'>
             {menus.map((menu, index) =>
-              <WrapItem key={index} w={{ base: "49%", md: "100%" }} bg="white">
+              <WrapItem key={index} w={{ base: "49%", md: "49%" }} bg="white">
                 <Link href={menu.href} w="100%">
                   <Center h="80px">
                     <Text fontSize="md">{menu.name}</Text>
