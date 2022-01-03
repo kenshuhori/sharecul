@@ -26,27 +26,27 @@ import type { Culture } from "@/@types/common";
 
 export default function IndexPage() {
   const [cultures, setCultures] = useState<Culture[]>([]);
+  const [filtered_cultures, setFilteredCultures] = useState<Culture[]>([]);
   const articleBackground = useColorModeValue("red.50", "gray.600");
 
   useEffect(() => {
     const fetchCultures = async () => {
-      let res = await readAll('cultures');
+      let res = await readAll('cultures') || [];
       setCultures(res);
+      setFilteredCultures(res);
     };
     fetchCultures();
   }, []);
 
   const filterCultures = (text) => {
-    console.log("ここ");
-    console.log(text);
     let search_words = text.split(/\s+/);
     let filteredCultures = cultures.filter((culture) => {
       let culture_info = [culture.title, culture.description, culture.price].join();
       return search_words.every((word) => {
-        culture_info.indexOf(word) > -1;
+        return culture_info.indexOf(word) > -1;
       });
     });
-    setCultures(filteredCultures);
+    setFilteredCultures(filteredCultures);
   };
 
   return (
@@ -92,7 +92,7 @@ export default function IndexPage() {
         <Box pb="100px">
           <section>
             <Wrap spacing='1%'>
-            {cultures.map(culture =>
+            {filtered_cultures.map(culture =>
               <WrapItem key={culture.id} w={{ base: "100%", sm: "100%", md: "100%", lg: "49%" }}>
                 <article>
                   <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
