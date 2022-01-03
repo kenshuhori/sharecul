@@ -25,6 +25,7 @@ import { readAll } from '@/utils/supabase';
 import type { Culture } from "@/@types/common";
 
 export default function IndexPage() {
+  const [timer, setTimer] = useState(null);
   const [cultures, setCultures] = useState<Culture[]>([]);
   const [filtered_cultures, setFilteredCultures] = useState<Culture[]>([]);
   const articleBackground = useColorModeValue("red.50", "gray.600");
@@ -47,6 +48,13 @@ export default function IndexPage() {
       });
     });
     setFilteredCultures(filteredCultures);
+  };
+
+  const inputFilter = (text) => {
+    if (timer){
+      clearTimeout(timer);
+    }
+    setTimer(setTimeout(function() { filterCultures(text); }, 700));
   };
 
   return (
@@ -72,7 +80,7 @@ export default function IndexPage() {
                 <InputLeftElement pointerEvents="none">
                   <SearchIcon color="gray.300" />
                 </InputLeftElement>
-                <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} onInput={(e) => {filterCultures(e.target.value);}} />
+                <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} onInput={(e) => {inputFilter(e.target.value);}} />
               </InputGroup>
             </Box>
             <Box m="0 0 0 auto">
