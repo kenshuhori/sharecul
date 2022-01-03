@@ -22,6 +22,7 @@ import { SearchIcon } from '@chakra-ui/icons';
 import { useState, useEffect } from 'react';
 import { readAll } from '@/utils/supabase';
 
+import type { FormEvent } from 'react';
 import type { Culture } from "@/@types/common";
 
 export default function IndexPage() {
@@ -50,7 +51,11 @@ export default function IndexPage() {
     setFilteredCultures(filteredCultures);
   };
 
-  const inputFilter = (text) => {
+  const handleFilter = (event: FormEvent<HTMLInputElement>) => {
+    if (!(event.target instanceof HTMLInputElement)) {
+      return;
+    }
+    let text = event.target.value;
     if (timer){
       clearTimeout(timer);
     }
@@ -80,7 +85,7 @@ export default function IndexPage() {
                 <InputLeftElement pointerEvents="none">
                   <SearchIcon color="gray.300" />
                 </InputLeftElement>
-                <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} onInput={(e) => {inputFilter(e.target.value);}} />
+                <Input type="text" placeholder="タイトル、著者名、説明文" _hover={{ cursor: "pointer", boxShadow: "lg" }} onInput={(e) => {handleFilter(e);}} />
               </InputGroup>
             </Box>
             <Box m="0 0 0 auto">
