@@ -41,12 +41,12 @@ export default function MypageCultureNewPage() {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      let data = 'あいうえお';
-      // let data = await upsertRow('cultures', {
-      //   title: title,
-      //   price: price,
-      //   description: description,
-      // });
+      let data = await upsertRow('cultures', {
+        title: title,
+        price: price,
+        description: description,
+        profile_id: session.user.id,
+      });
       if(data) {
         messageOnToast('申請しました。', 'success');
         replace('/mypage/cultures');
