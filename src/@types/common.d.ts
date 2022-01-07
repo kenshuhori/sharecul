@@ -15,4 +15,12 @@ export type Culture = {
   title: string;
   description: string;
   price: number;
+  profiles?: Profile;
+}
+
+export type Profile = {
+  id: string;
+  username: string;
+  avatar_url: string;
+  website: string;
 }

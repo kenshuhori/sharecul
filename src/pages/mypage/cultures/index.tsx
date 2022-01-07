@@ -40,7 +40,7 @@ export default function MypageCultureIndexPage() {
       // replace('/');
     } else {
       const fetchCultures = async () => {
-        let res = await read('cultures', { column: 'profile_id', value: session.user.id }) || [];
+        let res = await read('cultures', '*', { column: 'profile_id', value: session.user.id }) || [];
         setCultures(res);
       };
       fetchCultures();

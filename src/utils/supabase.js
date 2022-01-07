@@ -8,12 +8,12 @@ export async function readAll (tablename) {
     .select('*');
   return results;
 };
-export async function read (tablename, eq) {
+export async function read (tablename, select, eq) {
   let { data: results, error } = await supabase
     .from(tablename)
-    .select('*')
+    .select(select)
     .eq(eq.column, eq.value);
-  return results;
+  return results[0];
 };
 export async function upsertRow (tablename, values) {
   const { data, error } = await supabase

@@ -18,11 +18,31 @@ import {
   Textarea,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import { LinkButton } from "@/components/utils/LinkButton";
 import { SearchIcon } from '@chakra-ui/icons';
+import { read } from '@/utils/supabase';
+import type { Culture } from "@/@types/common";
 
 export default function CultureIndexPage() {
-  return (
+  const router = useRouter();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [culture, setCulture] = useState<Culture>({});
+
+  useEffect(() => {
+    if (router.query.id) {
+      const fetchCulture = async () => {
+        let res = await read('cultures', '*, profiles (username)', { column: 'id', value: router.query.id }) || [];
+        setCulture(res);
+        setIsLoaded(true);
+      };
+      fetchCulture();
+    }
+  }, [router]);
+
+  {
+    return isLoaded && (
     <div>
       <Stack>
         <Box>
@@ -46,15 +66,15 @@ export default function CultureIndexPage() {
                         <Image src="/brothers.jpg" alt="シェアカルアイテムの画像です" pb={8}></Image>
                       </Box>
                       <Box>
-                        <Text fontSize="2xl"><b>タイトルが入ります</b></Text>
+                        <Text fontSize="2xl"><b>{culture.title}</b></Text>
                       </Box>
                       <Flex>
-                        <Text fontSize="md">著者名が入ります</Text>
+                        <Text fontSize="md">{culture.profiles.username}</Text>
                         <Spacer />
-                        <Text fontSize="md">値段が入ります</Text>
+                        <Text fontSize="md">{culture.price}</Text>
                       </Flex>
                       <Box>
-                        <Text fontSize="sm">説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。</Text>
+                        <Text fontSize="sm">{culture.description}</Text>
                       </Box>
                     </Stack>
                   </Container>
@@ -77,7 +97,7 @@ export default function CultureIndexPage() {
                         <Textarea placeholder="ご意見ご要望・予め伝えておきたいこと" size="md" resize="vertical" h="300px" />
                       </Box>
                       <Box justifyContent="flex-end">
-                        <LinkButton name="確認画面へ" path="/culture/confirm"></LinkButton>
+                        <LinkButton name="確認画面へ" path="/culture/[id]/confirm"></LinkButton>
                       </Box>
                     </Stack>
                   </Container>
@@ -88,5 +108,5 @@ export default function CultureIndexPage() {
         </Box>
       </Stack>
     </div>
-  );
+  );}
 };

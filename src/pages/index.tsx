@@ -127,7 +127,7 @@ export default function IndexPage() {
                         </Box>
                         <Spacer />
                         <Box justifyContent="flex-end">
-                          <LinkButton name="申し込む" path="/culture"></LinkButton>
+                          <LinkButton name="申し込む" path={`/cultures/${culture.id}`}></LinkButton>
                         </Box>
                       </Stack>
                     </Container>
