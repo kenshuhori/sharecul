@@ -28,7 +28,7 @@ import type { Culture } from "@/@types/common";
 export default function CultureIndexPage() {
   const router = useRouter();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [culture, setCulture] = useState<Culture>({});
+  const [culture, setCulture] = useState<Culture>();
 
   useEffect(() => {
     if (router.query.id) {
