@@ -2,10 +2,11 @@ import { createClient } from "@supabase/supabase-js";
 
 export const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
 
-export async function readAll (tablename) {
+export async function readAll (tablename, order) {
   let { data: results, error } = await supabase
     .from(tablename)
-    .select('*');
+    .select('*')
+    .order(order, { ascending: false });
   return results;
 };
 export async function read (tablename, select, eq) {

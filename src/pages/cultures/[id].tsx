@@ -39,7 +39,7 @@ export default function CultureIndexPage() {
       };
       fetchCulture();
     }
-  }, [router]);
+  }, [router.query.id]);
 
   {
     return isLoaded && (

@@ -21,6 +21,7 @@ import { LinkButton } from "@/components/utils/LinkButton";
 import { SearchIcon } from '@chakra-ui/icons';
 import { useState, useEffect } from 'react';
 import { readAll } from '@/utils/supabase';
+import { parseISO, format } from 'date-fns';
 
 import type { FormEvent } from 'react';
 import type { Culture } from "@/@types/common";
@@ -33,7 +34,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     const fetchCultures = async () => {
-      let res = await readAll('cultures') || [];
+      let res = await readAll('cultures', 'created_at') || [];
       setCultures(res);
       setFilteredCultures(res);
     };
@@ -51,6 +52,17 @@ export default function IndexPage() {
     setFilteredCultures(filteredCultures);
   };
 
+  const orderCultures = (value) => {
+    let orderedCultures = filtered_cultures.sort((bef, af) => {
+      if (bef[value] > af[value]) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    setFilteredCultures([...orderedCultures]);
+  };
+
   const handleFilter = (event: FormEvent<HTMLInputElement>) => {
     if (!(event.target instanceof HTMLInputElement)) {
       return;
@@ -60,6 +72,18 @@ export default function IndexPage() {
       clearTimeout(timer);
     }
     setTimer(setTimeout(function() { filterCultures(text); }, 700));
+  };
+
+  const handleOrder = (event: FormEvent<HTMLSelectElement>) => {
+    if (!(event.target instanceof HTMLSelectElement)) {
+      return;
+    }
+    orderCultures(event.target.value);
+  };
+
+  const dateFormatter = (dateString) => {
+    let date = parseISO(dateString);
+    return format(date, 'yyyy/MM/dd');
   };
 
   return (
@@ -93,10 +117,11 @@ export default function IndexPage() {
                 <Box w="100px">
                   <Text>並び替え</Text>
                 </Box>
-                <Select _hover={{ cursor: "pointer" }}>
-                  <option value="option1">新しい順</option>
-                  <option value="option2">価格が安い順</option>
-                  <option value="option3">価格が高い順</option>
+                <Select _hover={{ cursor: "pointer" }} onChange={(e) => {handleOrder(e);}}>
+                  <option value="created_at">新しい順</option>
+                  <option value="price">価格が高い順</option>
+                  <option value="title">タイトル順</option>
+                  <option value="author">著者順</option>
                 </Select>
               </HStack>
             </Box>
@@ -114,6 +139,9 @@ export default function IndexPage() {
                     </Container>
                     <Container maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Stack h="100%">
+                        <Box>
+                          <Text fontSize="sm" textAlign="right">{dateFormatter(culture.created_at)}</Text>
+                        </Box>
                         <Box>
                           <Text fontSize="2xl"><b>{culture.title}</b></Text>
                         </Box>
