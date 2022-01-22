@@ -24,11 +24,24 @@ import {
 } from '@chakra-ui/react';
 import { ContentHeader } from '@/components/admin/ContentHeader';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { useState, useEffect } from 'react';
+import { readAll } from '@/utils/supabase';
+import type { Culture } from "@/@types/common";
 
 const CulturesPage = () => {
   const bg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.400", "white");
   const tableColor = useColorModeValue("black", "white");
+  const [cultures, setCultures] = useState<Culture[]>([]);
+
+  useEffect(() => {
+    const fetchCultures = async () => {
+      let res = await readAll('cultures', '*, profiles (username)', 'created_at') || [];
+      setCultures(res);
+    };
+    fetchCultures();
+  }, []);
+
   return (
     <>
       <ContentHeader contentName="カルチャー" useNew={true} newPath="/admin/cultures/new"></ContentHeader>
@@ -65,9 +78,9 @@ const CulturesPage = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {[1, 2, 3].map(culture => {
+          {cultures.map(culture => {
             return (
-              <Tr key={culture}>
+              <Tr key={culture.id}>
                 <Td><Checkbox /></Td>
                 <Td>
                   <Stack spacing={1}>
@@ -85,13 +98,13 @@ const CulturesPage = () => {
                 </Td>
                 <Td>
                   <Stack>
-                    <Box>タイトルが入ります</Box>
+                    <Box>{culture.title}</Box>
                     <Box>
-                      説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。説明文が入ります。
+                      {culture.description}
                     </Box>
                   </Stack>
                 </Td>
-                <Td>著者名</Td>
+                <Td>{culture.profiles.username}</Td>
                 <Td>
                   <Stack>
                     <Link>編集する</Link>

@@ -34,7 +34,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     const fetchCultures = async () => {
-      let res = await readAll('cultures', 'created_at') || [];
+      let res = await readAll('cultures', '*, profiles (username)', 'created_at') || [];
       setCultures(res);
       setFilteredCultures(res);
     };
