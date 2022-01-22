@@ -81,6 +81,14 @@ const CulturesPage = () => {
     // orderCultures(event.target.value);
   };
 
+  const statusColor = (status) => {
+    if(status === '公開') {
+      return 'green.400';
+    } else {
+      return 'red.400';
+    }
+  };
+
   return (
     <>
       <ContentHeader contentName="カルチャー" useNew={true} newPath="/admin/cultures/new"></ContentHeader>
@@ -120,7 +128,7 @@ const CulturesPage = () => {
                 <Td>
                   <Stack spacing={1}>
                     <Image src="/brothers.jpg" alt="カルチャーイメージ"></Image>
-                    <Select h="30px" _hover={{ cursor: "pointer" }} onChange={(e) => {onStatusChange(e, culture);}}>
+                    <Select size='sm' _hover={{ cursor: "pointer" }} bg={statusColor(culture.status)} onChange={(e) => {onStatusChange(e, culture);}}>
                       <option value="公開" selected={culture.status == '公開'}>公開</option>
                       <option value="非公開" selected={culture.status == '非公開'}>非公開</option>
                     </Select>
@@ -139,7 +147,6 @@ const CulturesPage = () => {
                   <Stack>
                     <Link>編集する</Link>
                     <Link>削除する</Link>
-                    <Link>公開する</Link>
                   </Stack>
                 </Td>
               </Tr>
