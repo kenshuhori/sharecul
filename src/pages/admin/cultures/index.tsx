@@ -5,10 +5,6 @@ import {
   Image,
   Input,
   Link,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   Select,
   Spacer,
   Stack,
@@ -24,7 +20,6 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { ContentHeader } from '@/components/admin/ContentHeader';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useState, useEffect } from 'react';
 import { readAll, update } from '@/utils/supabase';
 import { useToast } from '@/hooks/useToast';
@@ -39,11 +34,13 @@ const CulturesPage = () => {
   const { messageOnToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [cultures, setCultures] = useState<Culture[]>([]);
+  const [filtered_cultures, setFilteredCultures] = useState<Culture[]>([]);
 
   useEffect(() => {
     const fetchCultures = async () => {
       let res = await readAll('cultures', '*, profiles (username)', 'created_at') || [];
       setCultures(res);
+      setFilteredCultures(res);
     };
     fetchCultures();
   }, []);
@@ -74,11 +71,19 @@ const CulturesPage = () => {
     updateCulture(culture);
   };
 
-  const handleOrder = (event: FormEvent<HTMLSelectElement>) => {
+  const onOrderChange = (event: FormEvent<HTMLSelectElement>) => {
     if (!(event.target instanceof HTMLSelectElement)) {
       return;
     }
-    // orderCultures(event.target.value);
+    let value = event.target.value;
+    let orderedCultures = filtered_cultures.sort((bef, af) => {
+      if (bef[value] > af[value]) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    setFilteredCultures([...orderedCultures]);
   };
 
   const statusColor = (status) => {
@@ -100,7 +105,7 @@ const CulturesPage = () => {
         <Spacer />
         <Box p="11px">並び順</Box>
         <Box p="6px">
-          <Select _hover={{ cursor: "pointer" }} onChange={(e) => {handleOrder(e);}}>
+          <Select _hover={{ cursor: "pointer" }} onChange={(e) => {onOrderChange(e);}}>
             <option value="created_at">新しい順</option>
             <option value="price">価格が高い順</option>
             <option value="title">タイトル順</option>
@@ -115,13 +120,14 @@ const CulturesPage = () => {
           <Tr>
             <Th w="3%"><Checkbox /></Th>
             <Th w="15%">イメージ</Th>
-            <Th w="45%">内容</Th>
+            <Th w="44%">内容</Th>
+            <Th w="11%">値段</Th>
             <Th w="14%">ユーザー</Th>
             <Th w="13%">操作</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {cultures.map(culture => {
+          {filtered_cultures.map(culture => {
             return (
               <Tr key={culture.id}>
                 <Td><Checkbox /></Td>
@@ -142,11 +148,12 @@ const CulturesPage = () => {
                     </Box>
                   </Stack>
                 </Td>
+                <Td>{culture.price}</Td>
                 <Td>{culture.profiles.username}</Td>
                 <Td>
                   <Stack>
                     <Link>編集する</Link>
-                    <Link>削除する</Link>
+                    <Link color="red">削除する</Link>
                   </Stack>
                 </Td>
               </Tr>
