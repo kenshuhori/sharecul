@@ -15,6 +15,7 @@ export type Culture = {
   title: string;
   description: string;
   price: number;
+  status: string;
   profiles?: Profile;
 }
 

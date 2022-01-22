@@ -25,3 +25,13 @@ export async function upsertRow (tablename, values) {
   }
   return data;
 };
+export async function update (tablename, values, match) {
+  const { data, error } = await supabase
+    .from(tablename)
+    .update(values)
+    .match(match);
+  if (error) {
+    throw error;
+  }
+  return data;
+};

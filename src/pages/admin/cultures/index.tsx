@@ -9,6 +9,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Select,
   Spacer,
   Stack,
   Table,
@@ -25,13 +26,18 @@ import {
 import { ContentHeader } from '@/components/admin/ContentHeader';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useState, useEffect } from 'react';
-import { readAll } from '@/utils/supabase';
+import { readAll, update } from '@/utils/supabase';
+import { useToast } from '@/hooks/useToast';
+
+import type { FormEvent } from 'react';
 import type { Culture } from "@/@types/common";
 
 const CulturesPage = () => {
   const bg = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.400", "white");
   const tableColor = useColorModeValue("black", "white");
+  const { messageOnToast } = useToast();
+  const [loading, setLoading] = useState(false);
   const [cultures, setCultures] = useState<Culture[]>([]);
 
   useEffect(() => {
@@ -41,6 +47,39 @@ const CulturesPage = () => {
     };
     fetchCultures();
   }, []);
+
+  const updateCulture = async (culture) => {
+    try {
+      setLoading(true);
+      let data = await update('cultures', {
+        status: culture.status
+      }, {
+        id: culture.id
+      });
+      if(data) {
+        messageOnToast('更新しました', 'success');
+      }
+    } catch (error: any) {
+      messageOnToast(error.message, 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onStatusChange = (event: FormEvent<HTMLSelectElement>, culture: Culture) => {
+    if (!(event.target instanceof HTMLSelectElement)) {
+      return;
+    }
+    culture.status = event.target.value;
+    updateCulture(culture);
+  };
+
+  const handleOrder = (event: FormEvent<HTMLSelectElement>) => {
+    if (!(event.target instanceof HTMLSelectElement)) {
+      return;
+    }
+    // orderCultures(event.target.value);
+  };
 
   return (
     <>
@@ -53,16 +92,12 @@ const CulturesPage = () => {
         <Spacer />
         <Box p="11px">並び順</Box>
         <Box p="6px">
-          <Menu>
-            <MenuButton px={4} py={1} transition="all 0.2s" border="1px solid black" borderRadius="md" borderColor={borderColor} _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
-              新しい順 <ChevronDownIcon />
-            </MenuButton>
-            <MenuList>
-              <MenuItem>名前順</MenuItem>
-              <MenuItem>価格が高い順</MenuItem>
-              <MenuItem>価格が安い順</MenuItem>
-            </MenuList>
-          </Menu>
+          <Select _hover={{ cursor: "pointer" }} onChange={(e) => {handleOrder(e);}}>
+            <option value="created_at">新しい順</option>
+            <option value="price">価格が高い順</option>
+            <option value="title">タイトル順</option>
+            <option value="author">著者順</option>
+          </Select>
         </Box>
       </Flex>
 
@@ -85,15 +120,10 @@ const CulturesPage = () => {
                 <Td>
                   <Stack spacing={1}>
                     <Image src="/brothers.jpg" alt="カルチャーイメージ"></Image>
-                    <Menu>
-                      <MenuButton transition="all 0.2s" border="1px solid" borderColor={borderColor} _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
-                        公開 <ChevronDownIcon />
-                      </MenuButton>
-                      <MenuList>
-                        <MenuItem>公開</MenuItem>
-                        <MenuItem>非公開</MenuItem>
-                      </MenuList>
-                    </Menu>
+                    <Select h="30px" _hover={{ cursor: "pointer" }} onChange={(e) => {onStatusChange(e, culture);}}>
+                      <option value="公開" selected={culture.status == '公開'}>公開</option>
+                      <option value="非公開" selected={culture.status == '非公開'}>非公開</option>
+                    </Select>
                   </Stack>
                 </Td>
                 <Td>
