@@ -25,6 +25,7 @@ import type { FormEvent } from 'react';
 import type { Culture } from "@/@types/common";
 
 const CulturesPage = () => {
+  const [timer, setTimer] = useState(null);
   const { messageOnToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [cultures, setCultures] = useState<Culture[]>([]);
@@ -83,6 +84,28 @@ const CulturesPage = () => {
     setFilteredCultures([...orderedCultures]);
   };
 
+  const filterCultures = (text) => {
+    let search_words = text.split(/\s+/);
+    let filteredCultures = cultures.filter((culture) => {
+      let culture_info = [culture.title, culture.description, culture.price].join();
+      return search_words.every((word) => {
+        return culture_info.indexOf(word) > -1;
+      });
+    });
+    setFilteredCultures(filteredCultures);
+  };
+
+  const onFilter = (event: FormEvent<HTMLInputElement>) => {
+    if (!(event.target instanceof HTMLInputElement)) {
+      return;
+    }
+    let text = event.target.value;
+    if (timer){
+      clearTimeout(timer);
+    }
+    setTimer(setTimeout(function() { filterCultures(text); }, 700));
+  };
+
   const statusColor = (status) => {
     if(status === '公開') {
       return 'green.400';
@@ -97,7 +120,7 @@ const CulturesPage = () => {
       <Flex mt="12px" bg="white" fontSize="sm">
         <Box p="11px">フィルター</Box>
         <Box p="6px">
-          <Input w="300px" fontSize="sm" size="sm" border="1px solid" borderRadius="3xl" borderColor="gray.400" placeholder="タイトルまたは説明文"></Input>
+          <Input onInput={(e) => {onFilter(e);}} w="300px" fontSize="sm" size="sm" border="1px solid" borderRadius="3xl" borderColor="gray.400" placeholder="タイトルまたは説明文"></Input>
         </Box>
         <Spacer />
         <Box p="11px">並び順</Box>
