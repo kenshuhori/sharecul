@@ -29,6 +29,9 @@ const CulturesPage = () => {
   const [loading, setLoading] = useState(false);
   const [cultures, setCultures] = useState<Culture[]>([]);
   const [filtered_cultures, setFilteredCultures] = useState<Culture[]>([]);
+  const [checkedItems, setCheckedItems] = useState([false, false]);
+  const allChecked = checkedItems.every(Boolean);
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
 
   useEffect(() => {
     const fetchCultures = async () => {
@@ -112,7 +115,13 @@ const CulturesPage = () => {
         <TableCaption>カルチャー一覧</TableCaption>
         <Thead>
           <Tr>
-            <Th w="3%"><Checkbox /></Th>
+            <Th w="3%">
+              <Checkbox
+                isChecked={allChecked}
+                isIndeterminate={isIndeterminate}
+                onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
+              />
+            </Th>
             <Th w="15%">イメージ</Th>
             <Th w="44%">内容</Th>
             <Th w="11%">値段</Th>
@@ -124,7 +133,12 @@ const CulturesPage = () => {
           {filtered_cultures.map(culture => {
             return (
               <Tr key={culture.id}>
-                <Td><Checkbox /></Td>
+                <Td>
+                  <Checkbox
+                    isChecked={checkedItems[0]}
+                    onChange={(e) => setCheckedItems([e.target.checked, checkedItems[culture.id]])}
+                  />
+                </Td>
                 <Td>
                   <Stack spacing={1}>
                     <Image src="/brothers.jpg" alt="カルチャーイメージ"></Image>
