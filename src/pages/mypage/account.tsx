@@ -11,7 +11,6 @@ import {
   Stack,
   Spacer,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useSession } from '@/hooks/useSession';
@@ -21,7 +20,6 @@ import { useRecoilState } from 'recoil';
 import { sessionState } from '@/utils/atoms';
 
 export default function MypageAccountPage() {
-  const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState('');
   const [avatar_url, setAvatarUrl] = useState('');
@@ -114,7 +112,7 @@ export default function MypageAccountPage() {
 
   return (
     <>
-      <Container background={formBackground} >
+      <Container background="orange.50" >
         <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="20px" py="50px">
           <Box>
             <Center>

@@ -7,13 +7,11 @@ import {
   InputGroup,
   InputRightElement,
   Text,
-  useColorModeValue
 } from '@chakra-ui/react';
 import { supabase } from '@/utils/supabase';
 import { InputChecker } from '@/components/utils/InputChecker';
 
 const IndexPage = () => {
-  const formBackground = useColorModeValue("gray.100", "gray.700");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirm, setPasswordConfirm] = useState("");
@@ -32,7 +30,7 @@ const IndexPage = () => {
       }
     }>
       <Flex alignItems="center" justifyContent="center" m={8}>
-        <Flex direction="column" background={formBackground} p={12}>
+        <Flex direction="column" background="gray.100" p={12}>
           <Heading mb={6}>アカウント登録</Heading>
           <Text fontSize={12}>メールアドレス</Text>
           <InputGroup>

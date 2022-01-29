@@ -11,13 +11,10 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
-  Text,
-  useColorModeValue
 } from '@chakra-ui/react';
 import { ContentHeader } from '@/components/admin/ContentHeader';
 import { useState, useEffect } from 'react';
@@ -28,9 +25,6 @@ import type { FormEvent } from 'react';
 import type { Culture } from "@/@types/common";
 
 const CulturesPage = () => {
-  const bg = useColorModeValue("white", "gray.700");
-  const borderColor = useColorModeValue("gray.400", "white");
-  const tableColor = useColorModeValue("black", "white");
   const { messageOnToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [cultures, setCultures] = useState<Culture[]>([]);
@@ -97,10 +91,10 @@ const CulturesPage = () => {
   return (
     <>
       <ContentHeader contentName="カルチャー" useNew={true} newPath="/admin/cultures/new"></ContentHeader>
-      <Flex mt="12px" bg={bg} fontSize="sm">
+      <Flex mt="12px" bg="white" fontSize="sm">
         <Box p="11px">フィルター</Box>
         <Box p="6px">
-          <Input w="300px" fontSize="sm" size="sm" border="1px solid" borderRadius="3xl" borderColor={borderColor} placeholder="タイトルまたは説明文"></Input>
+          <Input w="300px" fontSize="sm" size="sm" border="1px solid" borderRadius="3xl" borderColor="gray.400" placeholder="タイトルまたは説明文"></Input>
         </Box>
         <Spacer />
         <Box p="11px">並び順</Box>
@@ -114,7 +108,7 @@ const CulturesPage = () => {
         </Box>
       </Flex>
 
-      <Table variant="simple" bg={bg} color={tableColor} mt="12px">
+      <Table variant="simple" bg="white" color="black" mt="12px">
         <TableCaption>カルチャー一覧</TableCaption>
         <Thead>
           <Tr>

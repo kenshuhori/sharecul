@@ -4,7 +4,6 @@ import {
   List,
   ListItem,
   ListIcon,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   MdFace,
@@ -14,9 +13,6 @@ import {
 import { useRouter } from 'next/router';
 
 export const SideNav = () => {
-  const normalGround = useColorModeValue("teal.50", "teal.600");
-  const hoverGround = useColorModeValue("teal.100", "teal.500");
-  const iconColor = useColorModeValue("green.600", "green.200");
   const router = useRouter();
   const pages = [
     { icon: MdFace, name: "カルチャー", href: "/admin/cultures" },
@@ -24,17 +20,17 @@ export const SideNav = () => {
     { icon: MdSettings, name: "設定", href: "/admin/settings" }
   ];
   return (
-    <Flex w="20%" bg={normalGround}>
+    <Flex w="20%" bg="teal.50">
       <List w="100%" boxShadow="lg">
         {pages.map(page => {
           let bg = "";
           if (page.href == router.pathname) {
-            bg = hoverGround;
+            bg = "teal.100";
           }
           return (
             <Link key={page.href} href={page.href} _hover={{ textDecoration: "none" }}>
-              <ListItem p="16px" boxShadow="base" bg={bg} _hover={{ bg: hoverGround, cursor: "pointer" }}>
-                <ListIcon as={page.icon} h={5} w={6} color={iconColor} />{page.name}
+              <ListItem p="16px" boxShadow="base" bg={bg} _hover={{ bg: "teal.100", cursor: "pointer" }}>
+                <ListIcon as={page.icon} h={5} w={6} color="green.600" />{page.name}
               </ListItem>
             </Link>
           );}

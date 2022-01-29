@@ -1,10 +1,16 @@
-import { Stack, Center, Link, Image, Box, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Image,
+  Link,
+  Text,
+  Stack
+} from "@chakra-ui/react";
 
 export const Footer = () => {
-  const background = useColorModeValue("gray.300", "gray.700");
   return (
     <footer>
-      <Center w="100%" bg={background} p="2">
+      <Center w="100%" bg="gray.300" p="2">
         <Stack>
           <Box>
             <Center>

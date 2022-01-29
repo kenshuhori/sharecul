@@ -23,7 +23,6 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
@@ -34,7 +33,6 @@ import { ToggleSigninButton } from "@/components/header/ToggleSigninButton";
 import { ToggleSignoutButton } from "@/components/header/ToggleSignoutButton";
 
 export const Header = () => {
-  const background = useColorModeValue("white", "gray.700");
   const [isRendered, setIsRendered] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -46,7 +44,7 @@ export const Header = () => {
 
   return (
     <header>
-      <Flex pos="fixed" w="100%" h={{ base: "60px", md: "70px" }} py="8px" px="2%" bg={background} boxShadow="base">
+      <Flex pos="fixed" w="100%" h={{ base: "60px", md: "70px" }} py="8px" px="2%" bg="white" boxShadow="base">
         <Box>
           <Link href="/">
             <Image src="/sharecul.png" h={{ base: "40px", md: "55px" }} alt="シェアカルのロゴです"></Image>

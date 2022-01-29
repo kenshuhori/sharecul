@@ -6,7 +6,6 @@ import {
   Link,
   Stack,
   Text,
-  useColorModeValue,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
@@ -16,7 +15,6 @@ import { useRecoilState } from 'recoil';
 import { sessionState } from '@/utils/atoms';
 
 export default function MyPageIndexPage() {
-  const formBackground = useColorModeValue("orange.50", "gray.700");
   const [session] = useRecoilState(sessionState);
   const { replace } = useRouter();
   const menus = [
@@ -34,7 +32,7 @@ export default function MyPageIndexPage() {
 
   return (
     <>
-      <Container background={formBackground} >
+      <Container background="orange.50" >
         <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="20px" py="50px">
           <Box>
             <Center>

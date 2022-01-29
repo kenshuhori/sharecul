@@ -10,7 +10,6 @@ import {
   Stack,
   Spacer,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -23,7 +22,6 @@ import { sessionState } from '@/utils/atoms';
 
 export default function AuthSignupPage() {
   const [session] = useRecoilState(sessionState);
-  const formBackground = useColorModeValue("orange.50", "gray.700");
   const { replace } = useRouter();
   const { signUp } = useSession();
   const [loading, setLoading] = useState(false);
@@ -63,7 +61,7 @@ export default function AuthSignupPage() {
           handleSubmit();
         }}
       >
-        <Container background={formBackground} >
+        <Container background="orange.50" >
           <Stack spacing={6} mx="auto" mt="80px" mb="50px" px={{ base: "10%", md: "20%"}} py="50px">
             <Box>
               <Center>

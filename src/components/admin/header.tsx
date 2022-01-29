@@ -1,21 +1,13 @@
 import {
   Flex,
   Box,
-  Spacer,
-  IconButton,
-  useColorMode,
-  useColorModeValue
+  Spacer
 } from "@chakra-ui/react";
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 
 export const Header = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("teal", "teal.900");
-  const fontColor = useColorModeValue("white", "white");
-  const iconColor = useColorModeValue("black", "white");
   return (
     <header>
-      <Flex pos="fixed" h="60px" w="100%" bg={bg} color={fontColor}>
+      <Flex pos="fixed" h="60px" w="100%" bg="teal" color="white">
         <Box p="4">
           シェアカル
         </Box>
@@ -25,15 +17,6 @@ export const Header = () => {
         </Box>
         <Box p="4">
           Contact
-        </Box>
-        <Box p="3">
-          <IconButton
-            size="sm"
-            color={iconColor}
-            aria-label="flick darkmode"
-            icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
-            onClick={toggleColorMode}
-          ></IconButton>
         </Box>
       </Flex>
     </header>

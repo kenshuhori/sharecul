@@ -13,7 +13,6 @@ import {
   Stack,
   Spacer,
   Text,
-  useColorModeValue,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
@@ -30,7 +29,6 @@ export default function IndexPage() {
   const [timer, setTimer] = useState(null);
   const [cultures, setCultures] = useState<Culture[]>([]);
   const [filtered_cultures, setFilteredCultures] = useState<Culture[]>([]);
-  const articleBackground = useColorModeValue("red.50", "gray.600");
 
   useEffect(() => {
     const fetchCultures = async () => {
@@ -133,7 +131,7 @@ export default function IndexPage() {
             {filtered_cultures.map(culture =>
               <WrapItem key={culture.id} w={{ base: "100%", sm: "100%", md: "100%", lg: "49%" }}>
                 <article>
-                  <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
+                  <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg="red.50">
                     <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
                       <Image src="/brothers.jpg" alt="シェアカルアイテムの画像です"></Image>
                     </Container>

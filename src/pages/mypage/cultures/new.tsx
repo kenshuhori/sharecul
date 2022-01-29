@@ -12,7 +12,6 @@ import {
   Spacer,
   Text,
   Textarea,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useSession } from '@/hooks/useSession';
@@ -21,7 +20,6 @@ import { useRecoilState } from 'recoil';
 import { sessionState } from '@/utils/atoms';
 
 export default function MypageCultureNewPage() {
-  const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
   const { messageOnToast } = useToast();
   const [title, setTitle] = useState('');
@@ -60,7 +58,7 @@ export default function MypageCultureNewPage() {
 
   return (
     <>
-      <Container background={formBackground} >
+      <Container background="orange.50" >
         <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="20px" py="50px">
           <Box>
             <Center>

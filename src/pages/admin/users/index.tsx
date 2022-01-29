@@ -14,34 +14,28 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
-  Text,
-  useColorModeValue
 } from '@chakra-ui/react';
 import { ContentHeader } from '@/components/admin/ContentHeader';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const UsersPage = () => {
-  const bg = useColorModeValue("white", "gray.700");
-  const borderColor = useColorModeValue("gray.400", "white");
-  const tableColor = useColorModeValue("black", "white");
   return (
     <>
       <ContentHeader contentName="ユーザー" useNew={true} newPath="/admin/users/new"></ContentHeader>
-      <Flex mt="12px" bg={bg} fontSize="sm">
+      <Flex mt="12px" bg="white" fontSize="sm">
         <Box p="11px">フィルター</Box>
         <Box p="6px">
-          <Input w="300px" fontSize="sm" size="sm" border="1px solid" borderRadius="3xl" borderColor={borderColor} placeholder="タイトルまたは説明文"></Input>
+          <Input w="300px" fontSize="sm" size="sm" border="1px solid" borderRadius="3xl" borderColor="gray.400" placeholder="タイトルまたは説明文"></Input>
         </Box>
         <Spacer />
         <Box p="11px">並び順</Box>
         <Box p="6px">
           <Menu>
-            <MenuButton px={4} py={1} transition="all 0.2s" border="1px solid black" borderRadius="md" borderColor={borderColor} _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
+            <MenuButton px={4} py={1} transition="all 0.2s" border="1px solid black" borderRadius="md" borderColor="gray.400" _hover={{ bg: "gray.400" }} _expanded={{ bg: "gray.400" }} >
               新しい順 <ChevronDownIcon />
             </MenuButton>
             <MenuList>
@@ -53,7 +47,7 @@ const UsersPage = () => {
         </Box>
       </Flex>
 
-      <Table variant="simple" bg={bg} color={tableColor} mt="12px">
+      <Table variant="simple" bg="white" color="black" mt="12px">
         <TableCaption>カルチャー一覧</TableCaption>
         <Thead>
           <Tr>

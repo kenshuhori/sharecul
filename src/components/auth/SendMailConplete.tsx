@@ -5,7 +5,6 @@ import {
   Divider,
   Stack,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   CheckCircleIcon
@@ -16,10 +15,9 @@ type Props = {title: string, email: string};
 
 export const SendMailComplete: VFC<Props> = (props) => {
   let {title, email} = props;
-  const formBackground = useColorModeValue("orange.50", "gray.700");
 
   return(
-    <Container background={formBackground} >
+    <Container background="orange.50" >
       <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" py="50px">
         <Box>
           <Center>

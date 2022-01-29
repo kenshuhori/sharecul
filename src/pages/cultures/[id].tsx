@@ -1,27 +1,19 @@
 import {
   Box,
-  Button,
   Center,
   Container,
   Divider,
   Flex,
-  HStack,
   Image,
   Input,
-  InputGroup,
-  InputLeftElement,
-  Link,
-  Select,
   Stack,
   Spacer,
   Text,
   Textarea,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { LinkButton } from "@/components/utils/LinkButton";
-import { SearchIcon } from '@chakra-ui/icons';
 import { read } from '@/utils/supabase';
 import type { Culture } from "@/@types/common";
 

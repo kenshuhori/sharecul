@@ -9,7 +9,6 @@ import {
   Stack,
   Spacer,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -21,7 +20,6 @@ import { sessionState } from '@/utils/atoms';
 
 export default function AuthPasswordResetPage() {
   const [session] = useRecoilState(sessionState);
-  const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [complete, setComplete] = useState(false);
@@ -57,7 +55,7 @@ export default function AuthPasswordResetPage() {
           e.preventDefault();
         }}
       >
-        <Container background={formBackground} >
+        <Container background="orange.50" >
           <Stack spacing={8} mx="auto" mt="80px" mb="50px" px="80px" pt="40px" pb="50px" >
             <Box>
               <Center>

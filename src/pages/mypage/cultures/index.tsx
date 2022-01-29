@@ -2,18 +2,14 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/utils/supabase';
 import {
   Box,
-  Button,
   Center,
   Container,
   Divider,
   Flex,
   Image,
-  Input,
-  Link,
   Stack,
   Spacer,
   Text,
-  useColorModeValue,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
@@ -28,12 +24,10 @@ import { read } from '@/utils/supabase';
 import type { Culture } from "@/@types/common";
 
 export default function MypageCultureIndexPage() {
-  const formBackground = useColorModeValue("orange.50", "gray.700");
   const [loading, setLoading] = useState(true);
   const { messageOnToast } = useToast();
   const [cultures, setCultures] = useState<Culture[]>([]);
   const [session] = useRecoilState(sessionState);
-  const articleBackground = useColorModeValue("red.50", "gray.600");
 
   useEffect(() => {
     if (!session) {
@@ -65,7 +59,7 @@ export default function MypageCultureIndexPage() {
           {cultures.map(culture =>
             <WrapItem key={culture.id} w={{ base: "100%", sm: "100%", md: "100%", lg: "49%" }}>
               <article>
-                <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg={articleBackground}>
+                <Flex py={8} my={4} direction={{ base: "column", md: "row" }} bg="red.50">
                   <Container pb={{ base: 8, md: 0 }} maxW={{ base: "90%", md: "50%" }} minH="200px">
                     <Image src="/brothers.jpg" alt="シェアカルアイテムの画像です"></Image>
                   </Container>
